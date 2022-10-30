@@ -12,7 +12,7 @@
                 provide you with the most necessary features that will make your experience better. Not only we
                 guarantee the fastest and the most exciting returns on your investments, but we also guarantee the
                 security of your investment.</p>
-              <a href="#0" class="cmn-btn text-uppercase font-weight-600 mt-4">Sign Up</a>
+              <a href="./register" class="cmn-btn text-uppercase font-weight-600 mt-4">Sign Up</a>
             </div>
           </div>
         </div>
@@ -68,7 +68,7 @@
                 minimizing any possible risks and offering a high-quality service, allowing us to automate and simplify
                 the relations between the investors and the trustees. We work towards increasing your profit margin by
                 profitable investment. We look forward to you being part of our community.</p>
-              <a href="#0" class="cmn-btn mt-4">MORE INFO</a>
+              <a href="./register" class="cmn-btn mt-4">MORE INFO</a>
             </div><!-- about-content end -->
           </div>
         </div>

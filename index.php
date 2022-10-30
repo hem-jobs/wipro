@@ -19,18 +19,31 @@ $Route->add('/crypto/', function () {
 
 //Home page//
 
+// Dashboard routes //
+
+$Route->add('/crypto/dashboard', function () {
+    
+    $Template = new Apps\Template(auth_url);
+    $Template->addheader("layouts.header");
+    $Template->addfooter("layouts.footer");
+    $Template->assign("title","Wipro Dashboard");
+
+    $Template->render("dashboard.index");
+
+}, 'GET');
+
+//Pages dynamic route//
+
 $Route->add('/crypto/{page}', function ($page) {
     
     $Template = new Apps\Template;
     $Template->addheader("layouts.header");
     $Template->addfooter("layouts.footer");
-    $Template->assign("title","Wipro Login");
+    $Template->assign("title","Wipro ".ucfirst($page));
 
     $Template->render("pages.{$page}");
 
 }, 'GET');
-// These are sample routes , '/crypto/login' will server the login page
-// These are sample routes , '/crypto/register' will server the register page
 
 
 

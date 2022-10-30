@@ -21,7 +21,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-6 text-md-left text-center">
-              <p>© 2020 <a href="index.html" class="base--color">HYIPLAB</a>. All rights reserved</p>
+              <p>© 2020- <?php echo date('Y');?> <a href="index.html" class="base--color">Wipro</a>. All rights reserved</p>
             </div>
             <div class="col-md-6">
               <ul class="social-link-list d-flex flex-wrap justify-content-md-end justify-content-center">
