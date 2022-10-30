@@ -1,0 +1,45 @@
+{
+    "name": "golojan/anthill",
+    "description": "Anthill Framework",
+    "type": "project",
+    "version": "21.01.14",
+    "keywords": [
+        "psr4",
+        "template"
+    ],
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Anthill",
+            "email": "info@anthill.com",
+            "homepage": "https://anthill.com/",
+            "role": "Developer"
+        }
+    ],
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "autoload": {
+        "classmap": [
+            "_apps/",
+            "_apps/Apps/"
+        ],
+        "psr-4": {
+            "Apps\\": [
+                "_apps/",
+                "_apps/Apps/"
+            ]
+        }
+    },
+    "require": {
+        "php": ">=5.6.36"
+    },
+    "scripts": {},
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "bin": [
+        "application"
+    ]
+}

@@ -1,0 +1,15 @@
+All the work you will do is in the template folder
+Create a seperate git branch for your uploads
+# The templates you will use to work is in the demo folder
+
+# Secondly, I want you to clean up the links on the pages
+for instance ./ == ./index.html, ./about == ./about.html you will see samples on the header.php file inside template/layouts
+
+Look at the header.php file inside template/layouts folder for Linking site assets
+
+The routing file is the index.php on the top level 
+How you link between the pages is with routes not the file names 
+for a route to work, you will have to create a file with the name of the route inside the template/ folder.
+And then serve the page from the index.php, you will see a sample route there; just copy and paste 
+
+Happy coding!!!
