@@ -19,29 +19,19 @@ $Route->add('/crypto/', function () {
 
 //Home page//
 
-$Route->add('/crypto/login', function () {
+$Route->add('/crypto/{page}', function ($page) {
     
     $Template = new Apps\Template;
     $Template->addheader("layouts.header");
     $Template->addfooter("layouts.footer");
     $Template->assign("title","Wipro Login");
 
-    $Template->render("login");
+    $Template->render("pages.{$page}");
 
 }, 'GET');
 // These are sample routes , '/crypto/login' will server the login page
 // These are sample routes , '/crypto/register' will server the register page
 
-$Route->add('/crypto/register', function () {
-    
-    $Template = new Apps\Template;
-    $Template->addheader("layouts.header");
-    $Template->addfooter("layouts.footer");
-    $Template->assign("title","Wipro Login");
-
-    $Template->render("register");
-
-}, 'GET');
 
 
 

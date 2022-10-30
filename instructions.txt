@@ -9,7 +9,6 @@ Look at the header.php file inside template/layouts folder for Linking site asse
 
 The routing file is the index.php on the top level 
 How you link between the pages is with routes not the file names 
-for a route to work, you will have to create a file with the name of the route inside the template/ folder.
-And then serve the page from the index.php, you will see a sample route there; just copy and paste 
+for a route to work, you will have to create a file with the name of the route inside the template/pages folder.
 
 Happy coding!!!

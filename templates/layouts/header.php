@@ -3,23 +3,24 @@
 <html lang="en">
 
 <head>
-  <base href="<?=domain ?>">
+  <base href="<?= domain ?>">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?=$title?></title>
-  <link rel="icon" type="image/png" href="<?=$assets?>/images/favicon.png" sizes="16x16">
+  <title><?= $title ?></title>
+  <!-- This is an example of how to link site assets 👇 to the page -->
+  <link rel="icon" type="image/png" href="<?= $assets ?>/images/favicon.png" sizes="16x16">
   <!-- bootstrap 4  -->
-  <link rel="stylesheet" href="<?=$assets?>/css/vendor/bootstrap.min.css">
+  <link rel="stylesheet" href="<?= $assets ?>/css/vendor/bootstrap.min.css">
   <!-- fontawesome 5  -->
-  <link rel="stylesheet" href="<?=$assets?>/css/all.min.css">
+  <link rel="stylesheet" href="<?= $assets ?>/css/all.min.css">
   <!-- line-awesome webfont -->
-  <link rel="stylesheet" href="<?=$assets?>/css/line-awesome.min.css">
-  <link rel="stylesheet" href="<?=$assets?>/css/vendor/animate.min.css">
+  <link rel="stylesheet" href="<?= $assets ?>/css/line-awesome.min.css">
+  <link rel="stylesheet" href="<?= $assets ?>/css/vendor/animate.min.css">
   <!-- slick slider css -->
-  <link rel="stylesheet" href="<?=$assets?>/css/vendor/slick.css">
-  <link rel="stylesheet" href="<?=$assets?>/css/vendor/dots.css">
+  <link rel="stylesheet" href="<?= $assets ?>/css/vendor/slick.css">
+  <link rel="stylesheet" href="<?= $assets ?>/css/vendor/dots.css">
   <!-- dashdoard main css -->
-  <link rel="stylesheet" href="<?=$assets?>/css/main.css">
+  <link rel="stylesheet" href="<?= $assets ?>/css/main.css">
 </head>
 
 
@@ -57,39 +58,28 @@
               <img src="<?= $assets ?>/images/logo.png" alt="site-logo"></a>
             <ul class="account-menu mobile-acc-menu">
               <li class="icon">
+                <!-- This is an 👇 example route on the frontend -->
                 <a href="./login"><i class="las la-user"></i></a>
               </li>
             </ul>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="menu-toggle"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav main-menu m-auto">
-                <li> <a href="index.html">Home</a></li>
-                <li> <a href="about.html">About Us</a></li>
-                <li> <a href="plan.html">Plan</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li class="menu_has_children"><a href="#0">Blog</a>
-                  <ul class="sub-menu">
-                    <li><a href="blog.html">Blog Posts</a></li>
-                    <li><a href="blog-details.html">Blog Details</a></li>
-                  </ul>
-                </li>
-                <li class="menu_has_children"><a href="#0">Page</a>
-                  <ul class="sub-menu">
-                    <li><a href="error-404.html">Error - 404</a></li>
-                  </ul>
-                </li>
-                <li><a href="contact.html">Contact</a></li>
+                <li> <a href="./">Home</a></li>
+                <li> <a href="./about">About Us</a></li>
+                <li> <a href="./plan">Plan</a></li>
+                <li><a href="./dashboard">Dashboard</a></li>
+                <li><a href="./contact">Contact</a></li>
               </ul>
               <div class="nav-right">
                 <ul class="account-menu ml-3">
                   <li class="icon">
-                    <a href="login.html"><i class="las la-user"></i></a>
+                    <a href="./login"><i class="las la-user"></i></a>
                   </li>
                 </ul>
-              
+
               </div>
             </div>
           </nav>
