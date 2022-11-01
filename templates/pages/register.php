@@ -49,7 +49,7 @@
     <div class="page-wrapper">
 
         <!-- account section start -->
-        <div class="account-section bg_img" data-background="<?= $assets ?>/images/bg/bg-5.jpg">
+        <div class="account-section bg_img" data-background="<?= $assets ?>/images/bg/bg-5.webp">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-xl-5 col-lg-7">
@@ -64,11 +64,11 @@
                                     <form method="post" action="./user/create-account" class="mt-4">
                                         <div class="form-group">
                                             <label>Full Name</label>
-                                            <input type="text" class="form-control" placeholder="Enter full name" name="name">
+                                            <input type="text" class="form-control" placeholder="Enter full name" required name="name">
                                         </div>
                                         <div class="form-group">
                                             <label>Email Address</label>
-                                            <input type="email" class="form-control" placeholder="Enter email address" name="email">
+                                            <input type="email" class="form-control" placeholder="Enter email address" required name="email">
                                         </div>
                                         <div class="form-group">
                                             <label>Referal id</label>
@@ -76,7 +76,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Password</label>
-                                            <input type="password" class="form-control" placeholder="Enter password" name="password">
+                                            <input type="password" class="form-control" placeholder="Enter password" name="password" required>
                                         </div>
                                         <div class="form-row">
                                             <div class="col-sm-6">

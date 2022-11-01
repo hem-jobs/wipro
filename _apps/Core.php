@@ -28,4 +28,11 @@ class Core extends Model
 		$login = mysqli_fetch_object($login);
 		return $login->id;
 	}
+	public function GetUserInfo($id)
+	{
+		$sql = "SELECT * FROM `user` WHERE `id` = '$id'";
+		$user = mysqli_query($this->dbCon, $sql);
+		$User = mysqli_fetch_object($user);
+		return $User;
+	}
 }

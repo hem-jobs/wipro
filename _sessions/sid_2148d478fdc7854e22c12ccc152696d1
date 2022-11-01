@@ -1,1 +1,0 @@
-a:5:{s:5:"token";O:8:"stdClass":3:{s:3:"tik";i:1667263765;s:3:"tok";s:40:"c30401cc0ed19173d387c0b6ee7c8e703caf72f8";s:5:"token";s:40:"0fde0047b50fdb51f5bad46c74b395813c0bd366";}s:9:"auth_time";s:19:"01-11-2022 01:49:25";s:5:"accid";s:1:"1";s:9:"logged_in";b:1;s:6:"errors";a:3:{s:5:"error";s:16:"Login Successful";s:4:"type";s:7:"success";s:5:"route";s:17:"/crypto/dashboard";}}

@@ -1,5 +1,17 @@
 <?php
 
+
+$Route->add('/crypto/login', function () {
+
+    $Template = new Apps\Template;
+    if ($Template->storage('accid')) {
+        $Template->redirect("/crypto/dashboard");
+    }
+    $Template->assign("title", "Wipro Login");
+
+    $Template->render("pages.login");
+}, 'GET');
+
 $Route->add('/crypto/register/{id}', function ($id) {
 
     $Template = new Apps\Template;
@@ -10,6 +22,9 @@ $Route->add('/crypto/register/{id}', function ($id) {
 $Route->add('/crypto/register', function () {
 
     $Template = new Apps\Template;
+    if ($Template->storage('accid')) {
+        $Template->redirect("/crypto/dashboard");
+    }
     $Template->assign("title", "Wipro Register");
     $Template->render("pages.register");
 }, 'GET');
@@ -19,43 +34,41 @@ $Route->add('/crypto/register', function () {
 
 //Post
 
-$Route->add('/crypto/user/create-account', function(){
-$Template = new Apps\Template;
-$Core = new Apps\Core;
-$Data = $Core->data;
-$email = $Data->email;
-$name = $Data->name;
-$ref_id = $Data->ref_id;
-$password = $Data->password;
+$Route->add('/crypto/user/create-account', function () {
+    $Template = new Apps\Template(auth_url);
+    $Core = new Apps\Core;
+    $Data = $Core->data;
+    $email = $Data->email;
+    $name = $Data->name;
+    $ref_id = $Data->ref_id;
+    $password = $Data->password;
 
-$created = $Core->CreateUser($email,$name,$ref_id,$password);
-if($created){
-    $Template->authorize($created);
-    $Template->setError('Account created successfully', 'success', "/crypto/dashboard");
-    $Template->redirect("/crypto/dashboard");
-}
-$Template->setError('Account creation failed', 'warning', "/crypto/register");
-$Template->redirect("/crypto/register");
-
+    $created = $Core->CreateUser($email, $name, $ref_id, $password);
+    if ($created) {
+        $Template->authorize($created);
+        $Template->setError('Account created successfully', 'success', "/crypto/dashboard");
+        $Template->redirect("/crypto/dashboard");
+    }
+    $Template->setError('Account creation failed', 'warning', "/crypto/register");
+    $Template->redirect("/crypto/register");
 }, 'POST');
 
 
 
-$Route->add('/crypto/user/login', function(){
-$Template = new Apps\Template;
-$Core = new Apps\Core;
-$Data = $Core->data;
-$email = $Data->email;
-$password = $Data->password;
+$Route->add('/crypto/user/login', function () {
+    $Template = new Apps\Template;
+    $Core = new Apps\Core;
+    $Data = $Core->data;
+    $email = $Data->email;
+    $password = $Data->password;
 
-$login = $Core->UserLogin($email,$password);
-if($login){
-    $Template->authorize($login);
-    $Template->setError('Login Successful', 'success', "/crypto/dashboard");
-    $Template->redirect("/crypto/dashboard");
-}
-$Template->setError('Account created successfully', 'success', "/crypto/login");
-$Template->redirect("/crypto/login");
-
+    $login = $Core->UserLogin($email, $password);
+    if ($login) {
+        $Template->authorize($login);
+        $Template->store("accid", $login);
+        $Template->setError('Login Successful', 'success', "/crypto/dashboard");
+        $Template->redirect("/crypto/dashboard");
+    }
+    $Template->setError('Login Failed!!! check credentials and try again', 'danger', "/crypto/login");
+    $Template->redirect("/crypto/login");
 }, 'POST');
-
