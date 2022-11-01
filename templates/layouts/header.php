@@ -30,7 +30,8 @@
       <span class="animated-preloader"></span>
     </div>
   </div>
-
+  
+  <?php if(@$menukey != 'dashboard'):?>
   <!-- scroll-to-top start -->
   <div class="scroll-to-top">
     <span class="scroll-icon">
@@ -86,4 +87,5 @@
         </div>
       </div><!-- header__bottom end -->
     </header>
+    <?php endif;?>
     <!-- header-section end  -->

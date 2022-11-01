@@ -1,7 +1,7 @@
 
 
     <!-- hero start -->
-    <section class="hero bg_img" data-background="<?= $assets ?>/images/bg/hero.jpg">
+    <section class="hero bg_img" data-background="<?= $assets ?>/images/bg/hero.webp">
       <div class="container">
         <div class="row">
           <div class="col-xl-5 col-lg-8">
@@ -23,8 +23,10 @@
     <!-- cureency section start -->
     <div class="cureency-section">
       <div class="container">
+
         <div class="row mb-none-30">
           <div class="col-lg-3 col-sm-6 cureency-item mb-30">
+            
             <div class="cureency-card text-center">
               <h6 class="cureency-card__title text-white">BITCOIN PRICE</h6>
               <span class="cureency-card__amount h-font-family font-weight-600 base--color">3150.00 USD</span>
@@ -54,7 +56,7 @@
     <!-- cureency section end  -->
 
     <!-- about section start -->
-    <section class="about-section pt-120 pb-120 bg_img" data-background="<?= $assets ?>/images/bg/bg-2.jpg">
+    <section class="about-section pt-120 pb-120 bg_img" data-background="<?= $assets ?>/images/bg/bg-2.webp">
       <div class="container">
         <div class="row">
           <div class="col-lg-6 offset-lg-6">
@@ -211,7 +213,7 @@
           <div class="col-lg-6 text-center">
             <div class="section-header">
               <h2 class="section-title"><span class="font-weight-normal">Why Choose</span> <b
-                  class="base--color">Hyiplab</b></h2>
+                  class="base--color">Wipro</b></h2>
               <p>Our goal is to provide our investors with a reliable source of high income, while minimizing any
                 possible risks and offering a high-quality service.</p>
             </div>
@@ -384,7 +386,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-6 text-center">
             <div class="section-header">
-              <h2 class="section-title"><span class="font-weight-normal">How</span> <b class="base--color">Hyiplab</b>
+              <h2 class="section-title"><span class="font-weight-normal">How</span> <b class="base--color">Wipro</b>
                 <span class="font-weight-normal">Works</span></h2>
               <p>Get involved in our tremendous platform and Invest. We will utilize your money and give you profit in
                 your wallet automatically.</p>
@@ -1160,117 +1162,3 @@
     <!-- payment brand section end -->
 
 
-    <!-- blog section start -->
-    <section class="pt-120 pb-120 border-top-1">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-6 text-center">
-            <div class="section-header">
-              <h2 class="section-title"><span class="font-weight-normal">Our Latest</span> <b
-                  class="base--color">News</b></h2>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse voluptatum eaque earum quos quia Id
-                aspernatur ratione, voluptas nulla rerum laudantium neque ipsam eaque</p>
-            </div>
-          </div>
-        </div><!-- row end -->
-        <div class="row justify-content-center mb-none-30">
-          <div class="col-lg-4 col-md-6 mb-30">
-            <div class="blog-card">
-              <div class="blog-card__thumb">
-                <img src="<?= $assets ?>/images/blog/1.jpg" alt="image">
-              </div>
-              <div class="blog-card__content">
-                <h4 class="blog-card__title mb-3"><a href="#0">Laboriosam distinctio nisi debitis deleniti voluptatum
-                    corporis.</a></h4>
-                <ul class="blog-card__meta d-flex flex-wrap mb-4">
-                  <li>
-                    <i class="las la-user"></i>
-                    <a href="#0">fahaddevs</a>
-                  </li>
-                  <li>
-                    <i class="las la-calendar"></i>
-                    <a href="#0">20 Nov, 2020</a>
-                  </li>
-                </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisic elit. Iusto eos rem ducimus nam! Optio, soluta.
-                  Laboriosam distinctio nisi debitis deleniti ducim.</p>
-                <a href="#0" class="cmn-btn btn-md mt-4">Read More</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 mb-30">
-            <div class="blog-card">
-              <div class="blog-card__thumb">
-                <img src="<?= $assets ?>/images/blog/2.jpg" alt="image">
-              </div>
-              <div class="blog-card__content">
-                <h4 class="blog-card__title mb-3"><a href="#0">Laboriosam distinctio nisi debitis deleniti voluptatum
-                    corporis.</a></h4>
-                <ul class="blog-card__meta d-flex flex-wrap mb-4">
-                  <li>
-                    <i class="las la-user"></i>
-                    <a href="#0">fahaddevs</a>
-                  </li>
-                  <li>
-                    <i class="las la-calendar"></i>
-                    <a href="#0">20 Nov, 2020</a>
-                  </li>
-                </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisic elit. Iusto eos rem ducimus nam! Optio, soluta.
-                  Laboriosam distinctio nisi debitis deleniti ducim.</p>
-                <a href="#0" class="cmn-btn btn-md mt-4">Read More</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 mb-30">
-            <div class="blog-card">
-              <div class="blog-card__thumb">
-                <img src="<?= $assets ?>/images/blog/3.jpg" alt="image">
-              </div>
-              <div class="blog-card__content">
-                <h4 class="blog-card__title mb-3"><a href="#0">Laboriosam distinctio nisi debitis deleniti voluptatum
-                    corporis.</a></h4>
-                <ul class="blog-card__meta d-flex flex-wrap mb-4">
-                  <li>
-                    <i class="las la-user"></i>
-                    <a href="#0">fahaddevs</a>
-                  </li>
-                  <li>
-                    <i class="las la-calendar"></i>
-                    <a href="#0">20 Nov, 2020</a>
-                  </li>
-                </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisic elit. Iusto eos rem ducimus nam! Optio, soluta.
-                  Laboriosam distinctio nisi debitis deleniti ducim.</p>
-                <a href="#0" class="cmn-btn btn-md mt-4">Read More</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- blog section end -->
-
-    <!-- subscribe section start -->
-    <section class="pb-120">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-10">
-            <div class="subscribe-wrapper bg_img" data-background="<?= $assets ?>/images/bg/bg-5.jpg">
-              <div class="row align-items-center">
-                <div class="col-lg-5">
-                  <h2 class="title">Subscribe Our Newsletter</h2>
-                </div>
-                <div class="col-lg-7 mt-lg-0 mt-4">
-                  <form class="subscribe-form">
-                    <input type="email" class="form-control" placeholder="Email Address">
-                    <button class="subscribe-btn"><i class="las la-envelope"></i></button>
-                  </form>
-                </div>
-              </div>
-            </div><!-- subscribe-wrapper end -->
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- subscribe section end -->

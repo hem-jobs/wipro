@@ -3,46 +3,53 @@
 
 define('DOT', '.');
 require_once DOT . "/bootstrap.php";
+require_once DOT . "/_public/user.php";
 
 //Home page//
 $Route->add('/crypto/', function () {
-    
+
     $Template = new Apps\Template;
     $Template->addheader("layouts.header");
     $Template->addfooter("layouts.footer");
-    $Template->assign("title","Wipro Home");
+    $Template->assign("title", "Wipro Home");
 
     $Template->render("home");
-
 }, 'GET');
 
 
 //Home page//
+
+
 
 // Dashboard routes //
 
 $Route->add('/crypto/dashboard', function () {
-    
+
     $Template = new Apps\Template(auth_url);
     $Template->addheader("layouts.header");
     $Template->addfooter("layouts.footer");
-    $Template->assign("title","Wipro Dashboard");
-
+    $Template->assign("title", "Wipro Dashboard");
+    $Template->assign("menukey", "dashboard");
     $Template->render("dashboard.index");
-
 }, 'GET');
 
 //Pages dynamic route//
 
+$Route->add('/crypto/login', function () {
+
+    $Template = new Apps\Template;
+    $Template->assign("title", "Wipro Login");
+
+    $Template->render("pages.login");
+}, 'GET');
 $Route->add('/crypto/{page}', function ($page) {
-    
+
     $Template = new Apps\Template;
     $Template->addheader("layouts.header");
     $Template->addfooter("layouts.footer");
-    $Template->assign("title","Wipro ".ucfirst($page));
+    $Template->assign("title", "Wipro " . ucfirst($page));
 
     $Template->render("pages.{$page}");
-
 }, 'GET');
 
 
