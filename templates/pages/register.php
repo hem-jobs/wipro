@@ -56,8 +56,7 @@
                         <div class="account-card">
                             <div class="account-card__header bg_img overlay--one" data-background="<?= $assets ?>/images/bg/bg-6.jpg">
                                 <h2 class="section-title">Welcome to <span class="base--color">Wipro</span></h2>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus distinctio deserunt impedit similique
-                                    debitis voluptatum enim.</p>
+                                <p><span class="base--color">Securely</span> create an account</p>
                             </div>
                             <div class="account-card__body">
                                 <h3 class="text-center">Create an Account</h2>

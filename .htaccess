@@ -14,7 +14,7 @@
 	</IfModule>
 
 	RewriteEngine On
-	RewriteBase /crypto
+	RewriteBase /
 
 	# Handle Authorization Header
 	RewriteCond %{HTTP:Authorization} .

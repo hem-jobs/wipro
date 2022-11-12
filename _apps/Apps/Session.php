@@ -260,7 +260,8 @@ class Session {
     $this->log .= "cleanAll() called to delete sessions older than "
       .$minutes." minutes<br />";
     chdir($this->dir);
-    $ret = shell_exec("find -type f -name 'sid_*' -maxdepth 1 -mmin +".$minutes." -exec rm -f {} \;");
+  $file = popen("find -type f -name 'sid_*' -maxdepth 1 -mmin +".$minutes." -exec rm -f {} \;","w");
+   pclose($file);
   }
   
 }

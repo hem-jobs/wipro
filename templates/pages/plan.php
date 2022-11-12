@@ -66,19 +66,7 @@
                     <a href="./invest/<?= "vip"?>" class="cmn-btn btn-md mt-4">Invest Now</a>
                 </div><!-- package-card end -->
             </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 mb-30">
-                <div class="package-card text-center bg_img" data-background="<?= $assets ?>/images/bg/bg-4.webp">
-                    <h4 class="package-card__title base--color mb-2">Enterprise</h4>
-                    <ul class="package-card__features mt-4">
-                        <li>Return 3.3%</li>
-                        <li>Every Day</li>
-                        <li>For 3 Days</li>
-                        <li>Total 10% + <span class="badge base--bg text-dark">Capital</span></li>
-                    </ul>
-                    <div class="package-card__range mt-5 base--color">$10000 - $200000</div>
-                    <a href="./invest/<?= "enterprise"?>" class="cmn-btn btn-md mt-4">Invest Now</a>
-                </div><!-- package-card end -->
-            </div>
+           
             <div class="col-xl-3 col-lg-4 col-md-6 mb-30">
                 <div class="package-card text-center bg_img" data-background="<?= $assets ?>/images/bg/bg-4.webp">
                     <h4 class="package-card__title base--color mb-2">Promotional</h4>

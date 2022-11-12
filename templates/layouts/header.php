@@ -1,4 +1,9 @@
-<!-- meta tags and other links -->
+<?php
+$User = $Core->GetUserInfo($Template->storage('accid'));
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,8 +35,7 @@
       <span class="animated-preloader"></span>
     </div>
   </div>
-  
-  <?php if(@$menukey != 'dashboard'):?>
+
   <!-- scroll-to-top start -->
   <div class="scroll-to-top">
     <span class="scroll-icon">
@@ -74,18 +78,19 @@
                 <li><a href="./dashboard">Dashboard</a></li>
                 <li><a href="./contact">Contact</a></li>
               </ul>
-              <div class="nav-right">
-                <ul class="account-menu ml-3">
-                  <li class="icon">
-                    <a href="./login"><i class="las la-user"></i></a>
-                  </li>
-                </ul>
+              <?php if (!isset($User->name)) : ?>
+                <div class="nav-right">
+                  <ul class="account-menu ml-3">
+                    <li class="icon">
+                      <a href="./login"><i class="las la-user"></i></a>
+                    </li>
+                  </ul>
 
-              </div>
+                </div>
+              <?php endif; ?>
             </div>
           </nav>
         </div>
       </div><!-- header__bottom end -->
     </header>
-    <?php endif;?>
     <!-- header-section end  -->

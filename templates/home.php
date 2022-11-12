@@ -92,10 +92,10 @@
         <div class="package-card text-center bg_img" data-background="<?= $assets ?>/images/bg/bg-4.webp">
           <h4 class="package-card__title base--color mb-2">Basic</h4>
           <ul class="package-card__features mt-4">
-            <li>Return 0.5%</li>
+            <li>Return 3%</li>
             <li>Every Day</li>
             <li>For 6 Days</li>
-            <li>Total 3% + <span class="badge base--bg text-dark">Capital</span></li>
+            <li>Total 18% + <span class="badge base--bg text-dark">Capital</span></li>
           </ul>
           <div class="package-card__range mt-5 base--color">$100 - $4999</div>
           <a href="./invest/<?= "basic" ?>" class="cmn-btn btn-md mt-4">Invest Now</a>
@@ -105,10 +105,10 @@
         <div class="package-card text-center bg_img" data-background="<?= $assets ?>/images/bg/bg-4.webp">
           <h4 class="package-card__title base--color mb-2">Prime</h4>
           <ul class="package-card__features mt-4">
-            <li>Return 0.7%</li>
+            <li>Return 4%</li>
             <li>Every Day</li>
             <li>For 6 Days</li>
-            <li>Total 4% + <span class="badge base--bg text-dark">Capital</span></li>
+            <li>Total 24% + <span class="badge base--bg text-dark">Capital</span></li>
           </ul>
           <div class="package-card__range mt-5 base--color">$5000 - $49999</div>
           <a href="./invest/<?= "prime" ?>" class="cmn-btn btn-md mt-4">Invest Now</a>
@@ -118,36 +118,24 @@
         <div class="package-card text-center bg_img" data-background="<?= $assets ?>/images/bg/bg-4.webp">
           <h4 class="package-card__title base--color mb-2">VIP</h4>
           <ul class="package-card__features mt-4">
-            <li>Return 1%</li>
+            <li>Return 5.5%</li>
             <li>Every Day</li>
             <li>For 5 Days</li>
-            <li>Total 5% + <span class="badge base--bg text-dark">Capital</span></li>
+            <li>Total 27.5% + <span class="badge base--bg text-dark">Capital</span></li>
           </ul>
           <div class="package-card__range mt-5 base--color">$50000 - $5000</div>
           <a href="./invest/<?= "vip" ?>" class="cmn-btn btn-md mt-4">Invest Now</a>
         </div><!-- package-card end -->
       </div>
-      <div class="col-xl-3 col-lg-4 col-md-6 mb-30">
-        <div class="package-card text-center bg_img" data-background="<?= $assets ?>/images/bg/bg-4.webp">
-          <h4 class="package-card__title base--color mb-2">Enterprise</h4>
-          <ul class="package-card__features mt-4">
-            <li>Return 3.3%</li>
-            <li>Every Day</li>
-            <li>For 3 Days</li>
-            <li>Total 10% + <span class="badge base--bg text-dark">Capital</span></li>
-          </ul>
-          <div class="package-card__range mt-5 base--color">$10000 - $200000</div>
-          <a href="./invest/<?= "enterprise" ?>" class="cmn-btn btn-md mt-4">Invest Now</a>
-        </div><!-- package-card end -->
-      </div>
+      
       <div class="col-xl-3 col-lg-4 col-md-6 mb-30">
         <div class="package-card text-center bg_img" data-background="<?= $assets ?>/images/bg/bg-4.webp">
           <h4 class="package-card__title base--color mb-2">Promotional</h4>
           <ul class="package-card__features mt-4">
-            <li>Return 12.5%</li>
+            <li>Return 25%</li>
             <li>Every Day</li>
             <li>For 2 Days</li>
-            <li>Total 25% + <span class="badge base--bg text-dark">Capital</span></li>
+            <li>Total 50% + <span class="badge base--bg text-dark">Capital</span></li>
           </ul>
           <div class="package-card__range mt-5 base--color">$200001 - $infinity</div>
           <a href="./invest/<?= "promotional" ?>" class="cmn-btn btn-md mt-4">Invest Now</a>
@@ -500,8 +488,7 @@
       <div class="col-lg-6 text-center">
         <div class="section-header">
           <h2 class="section-title"><span class="font-weight-normal">What Users Say</span> <b class="base--color">About Us</b></h2>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse voluptatum eaque earum quos quia? Id
-            aspernatur ratione, voluptas nulla rerum laudantium neque ipsam eaque</p>
+          <p>See what our customers say</p>
         </div>
       </div>
     </div><!-- row end -->
@@ -511,9 +498,7 @@
           <div class="single-slide">
             <div class="testimonial-card">
               <div class="testimonial-card__content">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos minus, assumenda soluta unde
-                  veritatis voluptatibus adipisci, aliquid, non officiis repudiandae rerum porro odio ea laborum
-                  veniam numquam doloribus obcaecati.</p>
+                <p>My only regret is not starting with Wipro Investments a long time ago</p>
               </div>
               <div class="testimonial-card__client">
                 <div class="thumb">
@@ -536,9 +521,12 @@
           <div class="single-slide">
             <div class="testimonial-card">
               <div class="testimonial-card__content">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos minus, assumenda soluta unde
-                  veritatis voluptatibus adipisci, aliquid, non officiis repudiandae rerum porro odio ea laborum
-                  veniam numquam doloribus obcaecati.</p>
+                <p>
+                  The fee structure is, if not the best, one of the best in the industry.
+                  Every request is dealt with promptly and most impressive is that whatever
+                  concerns I have regarding the economic environment or the relevance of my
+                  investment mix, a professional is just an email away. I can confidently refer
+                  any sophisticated investor to Wipro Investment</p>
               </div>
               <div class="testimonial-card__client">
                 <div class="thumb">
@@ -546,7 +534,7 @@
                 </div>
                 <div class="content">
                   <h6 class="name">Alina</h6>
-                  <span class="designation">CTO of fahaddevs</span>
+                  <span class="designation">Financial Planner</span>
                   <div class="ratings">
                     <i class="las la-star"></i>
                     <i class="las la-star"></i>
@@ -561,17 +549,22 @@
           <div class="single-slide">
             <div class="testimonial-card">
               <div class="testimonial-card__content">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos minus, assumenda soluta unde
-                  veritatis voluptatibus adipisci, aliquid, non officiis repudiandae rerum porro odio ea laborum
-                  veniam numquam doloribus obcaecati.</p>
+                <p>
+                  I have been looking everywhere to invest my savings in an honest
+                  company who strives in giving the most reliable customer support.
+                  I must say the Wipro Investment team really takes customer service to the
+                  next level. I received quick responses, honest advice and they setup my
+                  investment account in quick easy steps. Having Investonline as my financial
+                  advisor really gives me great peace of mind.
+                </p>
               </div>
               <div class="testimonial-card__client">
                 <div class="thumb">
                   <img src="<?= $assets ?>/images/testimonial/3.jpg" alt="image">
                 </div>
                 <div class="content">
-                  <h6 class="name">Amir Khan</h6>
-                  <span class="designation">COO of fahaddevs</span>
+                  <h6 class="name">Lucian Isaacs </h6>
+                  <span class="designation">Call center Manager</span>
                   <div class="ratings">
                     <i class="las la-star"></i>
                     <i class="las la-star"></i>
@@ -586,17 +579,18 @@
           <div class="single-slide">
             <div class="testimonial-card">
               <div class="testimonial-card__content">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos minus, assumenda soluta unde
-                  veritatis voluptatibus adipisci, aliquid, non officiis repudiandae rerum porro odio ea laborum
-                  veniam numquam doloribus obcaecati.</p>
+                <p>The safest place i have put my money in all my 
+                  time with investments. Kudos to the Wipro investment team.
+                  I could'nt help myself from dropping the five star rating
+                </p>
               </div>
               <div class="testimonial-card__client">
                 <div class="thumb">
                   <img src="<?= $assets ?>/images/testimonial/4.jpg" alt="image">
                 </div>
                 <div class="content">
-                  <h6 class="name">Zohir Khan</h6>
-                  <span class="designation">Manager of fahaddevs</span>
+                  <h6 class="name">Thomas Lukasson</h6>
+                  <span class="designation">Manager Golden Hearts Academy</span>
                   <div class="ratings">
                     <i class="las la-star"></i>
                     <i class="las la-star"></i>
@@ -623,8 +617,7 @@
         <div class="section-header">
           <h2 class="section-title"><span class="font-weight-normal">Our Expert</span> <b class="base--color">Team
               Members</b></h2>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse voluptatum eaque earum quos quia? Id
-            aspernatur ratione, voluptas nulla rerum laudantium neque ipsam eaque</p>
+          <p>Behold the awesome humans behind our success story</p>
         </div>
       </div>
     </div><!-- row end -->
@@ -635,7 +628,7 @@
             <img src="<?= $assets ?>/images/investor/1.jpg" alt="image">
           </div>
           <div class="team-card__content">
-            <h4 class="name mb-1">Fahad Bin Faiz</h4>
+            <h4 class="name mb-1">Fahad Faiz Mummad</h4>
             <span class="designation">CEO</span>
           </div>
         </div><!-- team-card end -->
@@ -925,8 +918,7 @@
       <div class="col-xl-6 col-lg-8 text-center">
         <div class="section-header">
           <h2 class="section-title"><span class="font-weight-normal">Our Top</span> <b class="base--color">Investor</b></h2>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse voluptatum eaque earum quos quia? Id
-            aspernatur ratione, voluptas nulla rerum laudantium neque ipsam eaque</p>
+          <p>Peope who have put the most faith in our top notch services</p>
         </div>
       </div>
     </div><!-- row end -->
@@ -945,7 +937,7 @@
           <div class="investor-card__thumb bg_img background-position-y-top" data-background="<?= $assets ?>/images/investor/2.jpg"></div>
           <div class="investor-card__content">
             <h6 class="name">Danial K</h6>
-            <span class="amount f-size-14">Investment - $1,500,355</span>
+            <span class="amount f-size-14">Investment - $1,400,276</span>
           </div>
         </div><!-- investor-card end -->
       </div>
@@ -954,7 +946,7 @@
           <div class="investor-card__thumb bg_img background-position-y-top" data-background="<?= $assets ?>/images/investor/3.jpg"></div>
           <div class="investor-card__content">
             <h6 class="name">Lew Son</h6>
-            <span class="amount f-size-14">Investment - $1,500,355</span>
+            <span class="amount f-size-14">Investment - $1,370,540</span>
           </div>
         </div><!-- investor-card end -->
       </div>
@@ -963,7 +955,7 @@
           <div class="investor-card__thumb bg_img background-position-y-top" data-background="<?= $assets ?>/images/investor/4.jpg"></div>
           <div class="investor-card__content">
             <h6 class="name">Tend z Joe</h6>
-            <span class="amount f-size-14">Investment - $1,500,355</span>
+            <span class="amount f-size-14">Investment - $1,320,195</span>
           </div>
         </div><!-- investor-card end -->
       </div>
@@ -972,7 +964,7 @@
           <div class="investor-card__thumb bg_img background-position-y-top" data-background="<?= $assets ?>/images/investor/5.jpg"></div>
           <div class="investor-card__content">
             <h6 class="name">Sam Joe</h6>
-            <span class="amount f-size-14">Investment - $1,500,355</span>
+            <span class="amount f-size-14">Investment - $1,300,525</span>
           </div>
         </div><!-- investor-card end -->
       </div>
@@ -981,7 +973,7 @@
           <div class="investor-card__thumb bg_img background-position-y-top" data-background="<?= $assets ?>/images/investor/6.jpg"></div>
           <div class="investor-card__content">
             <h6 class="name">Alex Joe</h6>
-            <span class="amount f-size-14">Investment - $1,500,355</span>
+            <span class="amount f-size-14">Investment - $1,260,890</span>
           </div>
         </div><!-- investor-card end -->
       </div>
@@ -990,7 +982,7 @@
           <div class="investor-card__thumb bg_img background-position-y-top" data-background="<?= $assets ?>/images/investor/7.jpg"></div>
           <div class="investor-card__content">
             <h6 class="name">Juna Sun</h6>
-            <span class="amount f-size-14">Investment - $1,500,355</span>
+            <span class="amount f-size-14">Investment - $1,240,140</span>
           </div>
         </div><!-- investor-card end -->
       </div>
@@ -999,7 +991,7 @@
           <div class="investor-card__thumb bg_img background-position-y-top" data-background="<?= $assets ?>/images/investor/8.jpg"></div>
           <div class="investor-card__content">
             <h6 class="name">Profed Laun</h6>
-            <span class="amount f-size-14">Investment - $1,500,355</span>
+            <span class="amount f-size-14">Investment - $1,200,385</span>
           </div>
         </div><!-- investor-card end -->
       </div>

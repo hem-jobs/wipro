@@ -1,7 +1,7 @@
 <?php
 
 
-$Route->add('/crypto/invest/{package}', function ($package) {
+$Route->add('/invest/{package}', function ($package) {
     $Template = new Apps\Template(auth_url);
     $Template->addheader("layouts.header");
     $Template->addfooter("layouts.footer");

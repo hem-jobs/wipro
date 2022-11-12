@@ -8,11 +8,11 @@ class Emailer
 	public $toEmail = NULL;
 	public $toName = NULL;
 
-	public $fromEmail = "info@localhost.com";
-	public $fromName = "Localhost";
-	public $replyEmail = "info@localhost.com";
-	public $replyName = "Localhost";
-	public $subject = "New Mail";
+	public $fromEmail = "info@wiproinvestment.com";
+	public $fromName = "Wipro Investment";
+	public $replyEmail = "info@wiproinvestment.com";
+	public $replyName = "Wipro investment";
+	public $subject = "Mail";
 
 	private $variables = array();
 
@@ -53,14 +53,15 @@ class Emailer
 			$PHPmailer->AddReplyTo($this->replyEmail, $this->replyName);
 			$PHPmailer->Subject = $this->subject;
 
-			if (enable_DKIM_keys) {
-				//$PHPmailer->Sender = $this->fromEmail;
-				//$PHPmailer->DKIM_domain = domain;
-				//$PHPmailer->DKIM_private = "https://golojan.com/_dkim/private.key";
-				//$PHPmailer->DKIM_selector = 'default._domainkey';
-				//$PHPmailer->DKIM_passphrase = '';
-				//$PHPmailer->DKIM_identity = $this->fromEmail;
-				//$PHPmailer->addCustomHeader("BIMI-Selector:v=BIMI1;s=default;");
+			if (true) {
+				$PHPmailer->Sender = $this->fromEmail;
+				$PHPmailer->DKIM_domain = domain;
+				$PHPmailer->DKIM_private = "https://wiproinvestment.com/_dkim/private.key";
+				
+				$PHPmailer->DKIM_selector = 'default._domainkey';
+				$PHPmailer->DKIM_passphrase = '';
+				$PHPmailer->DKIM_identity = $this->fromEmail;
+				$PHPmailer->addCustomHeader("BIMI-Selector:v=BIMI1;s=default;");
 			}
 
 			$PHPmailer->isHTML(true);

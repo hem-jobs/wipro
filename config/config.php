@@ -1,10 +1,6 @@
 <?php
 
-/*
- * Copyright (C) 2014-2020 De-Golojan Technologies Ltd. (www.golojan.com)
- * Distributed under the terms of the license described in COPYING
- * Constants
- */
+
 
 define("appname","Anthill");
 define("version","21.03.29");
@@ -38,14 +34,14 @@ define("session_path","./_sessions/");
 define("session_timout",20);
 define("session_delete_timout",30);
 define("auth_session_key","logged_in");
-define("auth_url","/crypto/login");
+define("auth_url","/login");
 
-define("domain", "https://localhost/crypto/");
+define("domain", "https://wiproinvestment.com/");
 
 define("db_host","localhost");
-define("db_user","root");
-define("db_password","");
-define("db_name","db");
+define("db_user","wiproinv_db");
+define("db_password","wiproinv_db");
+define("db_name","wiproinv_db");
 define("db_port",null);
 define("db_charset","utf8");
 define("db_socket",null);

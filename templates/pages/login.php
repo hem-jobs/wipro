@@ -57,7 +57,7 @@
                             <div class="account-card__header bg_img overlay--one" data-background="<?= $assets ?>/images/bg/bg-6.jpg">
                                 <h2 class="section-title">Welcome to <span class="base--color">Wipro</span></h2>
                                <p><?=$Self->Toast()?></p>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+                                <p>Start your journey to true <span class="base--color">Financial</span> freedom</p>
                             </div>
                             <div class="account-card__body">
                                 <h3 class="text-center">Login</h3>

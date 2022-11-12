@@ -8,7 +8,7 @@ include_once DOT . "/_public/investments.php";
 
 
 //Home page//
-$Route->add('/crypto/', function () {
+$Route->add('/', function () {
 
     $Template = new Apps\Template;
     $Template->addheader("layouts.header");
@@ -25,11 +25,9 @@ $Route->add('/crypto/', function () {
 
 // Dashboard routes //
 
-$Route->add('/crypto/dashboard', function () {
+$Route->add('/dashboard', function () {
 
     $Template = new Apps\Template(auth_url);
-    $Template->addheader("layouts.header");
-    $Template->addfooter("layouts.footer");
     $Template->assign("title", "Wipro Dashboard");
     $Template->assign("menukey", "dashboard");
     $Template->render("dashboard.index");
@@ -38,7 +36,7 @@ $Route->add('/crypto/dashboard', function () {
 //Pages dynamic route//
 
 
-$Route->add('/crypto/{page}', function ($page) {
+$Route->add('/{page}', function ($page) {
 
     $Template = new Apps\Template;
     $Template->addheader("layouts.header");
