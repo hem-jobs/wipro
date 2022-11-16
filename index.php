@@ -5,6 +5,7 @@ define('DOT', '.');
 require_once DOT . "/bootstrap.php";
 require_once DOT . "/_public/user.php";
 include_once DOT . "/_public/investments.php";
+include_once DOT . "/_public/dashboard.php";
 
 
 //Home page//
@@ -25,13 +26,7 @@ $Route->add('/', function () {
 
 // Dashboard routes //
 
-$Route->add('/dashboard', function () {
 
-    $Template = new Apps\Template(auth_url);
-    $Template->assign("title", "Wipro Dashboard");
-    $Template->assign("menukey", "dashboard");
-    $Template->render("dashboard.index");
-}, 'GET');
 
 //Pages dynamic route//
 

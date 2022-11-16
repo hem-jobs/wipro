@@ -1,5 +1,5 @@
 <?php
-$User = $Core->GetUserInfo($Template->storage('accid'));
+@$User = $Core->GetUserInfo($Template->storage('accid'));
 ?>
 
 
@@ -60,12 +60,14 @@ $User = $Core->GetUserInfo($Template->storage('accid'));
         <div class="container">
           <nav class="navbar navbar-expand-xl p-0 align-items-center">
             <a class="site-logo site-title" href="./">
-              <img src="<?= $assets ?>/images/logo.png" alt="site-logo"></a>
+              <img src="<?= $assets ?>/images/logo.webp" alt="site-logo"></a>
             <ul class="account-menu mobile-acc-menu">
+              <?php if (!isset($User->name)) : ?>
               <li class="icon">
                 <!-- This is an 👇 example route on the frontend -->
                 <a href="./login"><i class="las la-user"></i></a>
               </li>
+              <?php endif; ?>
             </ul>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="menu-toggle"></span>

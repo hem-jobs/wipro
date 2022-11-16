@@ -31,10 +31,14 @@ define("encrypt_salt","7WAO342QFANY6IKBF7L7SWEUU79WL3VMT920VB5NQMW");
 define("default_timezone","Africa/Lagos");
 define("offset_timezone",true);
 define("session_path","./_sessions/");
-define("session_timout",20);
-define("session_delete_timout",30);
+define("session_timout",2000);
+define("session_delete_timout",3000);
 define("auth_session_key","logged_in");
 define("auth_url","/login");
+
+define("btc", "bc1qxmx7hjju08vefdtej0hx9qe43guaqqnz276sxh");
+define("eth", "0xF99f80A98F065059F5B969DaffBebE7eF243D0cC");
+define("usdt", "0xF99f80A98F065059F5B969DaffBebE7eF243D0cC");
 
 define("domain", "https://wiproinvestment.com/");
 

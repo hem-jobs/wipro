@@ -127,7 +127,7 @@
           <a href="./invest/<?= "vip" ?>" class="cmn-btn btn-md mt-4">Invest Now</a>
         </div><!-- package-card end -->
       </div>
-      
+
       <div class="col-xl-3 col-lg-4 col-md-6 mb-30">
         <div class="package-card text-center bg_img" data-background="<?= $assets ?>/images/bg/bg-4.webp">
           <h4 class="package-card__title base--color mb-2">Promotional</h4>
@@ -272,49 +272,7 @@
 </section>
 <!-- choose us section end  -->
 
-<!-- profit calculator section start -->
-<section class="pt-120 pb-120">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-6">
-        <div class="section-header text-center">
-          <h2 class="section-title"><span class="font-weight-normal">Profit</span> <b class="base--color">Calculator</b></h2>
-          <p>You must know the calculation before investing in any plan, so you never make mistakes. Check the
-            calculation and you will get as our calculator says.</p>
-        </div>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-xl-8">
-        <div class="profit-calculator-wrapper">
-          <form class="profit-calculator">
-            <div class="row mb-none-30">
-              <div class="col-lg-6 mb-30">
-                <label>Choose Plan</label>
-                <select class="base--bg">
-                  <option>Basic Package</option>
-                  <option>Standard Package</option>
-                  <option>Silver Package</option>
-                  <option>Premium Package</option>
-                  <option>Platinum Package</option>
-                </select>
-              </div>
-              <div class="col-lg-6 mb-30">
-                <label>Invest Amount</label>
-                <input type="text" name="invest_amount" id="invest_amount" placeholder="0.00" class="form-control base--bg">
-              </div>
-              <div class="col-lg-12 mb-30">
-                <label>Profit Amount</label>
-                <input type="text" name="profit_amount" id="profit_amount" placeholder="0.00" class="form-control base--bg" disabled>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- profit calculator section end -->
+
 
 <!-- how work section start -->
 <section class="pt-120 pb-120 bg_img" data-background="<?= $assets ?>/images/bg/bg-5.webp">
@@ -579,7 +537,7 @@
           <div class="single-slide">
             <div class="testimonial-card">
               <div class="testimonial-card__content">
-                <p>The safest place i have put my money in all my 
+                <p>The safest place i have put my money in all my
                   time with investments. Kudos to the Wipro investment team.
                   I could'nt help myself from dropping the five star rating
                 </p>
@@ -751,72 +709,22 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td data-label="Name">
-                      <div class="user">
-                        <div class="thumb"><img src="<?= $assets ?>/images/investor/1.jpg" alt="image"></div>
-                        <span>fahaddevs</span>
-                      </div>
-                    </td>
-                    <td data-label="Date">Nov 22, 2020</td>
-                    <td data-label="Amount">$ 5000</td>
-                    <td data-label="Gateway">Stripe Hosted</td>
-                  </tr>
-                  <tr>
-                    <td data-label="Name">
-                      <div class="user">
-                        <div class="thumb"><img src="<?= $assets ?>/images/investor/2.jpg" alt="image"></div>
-                        <span>Jon Tulsa</span>
-                      </div>
-                    </td>
-                    <td data-label="Date">Dec 11, 2020</td>
-                    <td data-label="Amount">$ 1000</td>
-                    <td data-label="Gateway">Stripe Hosted</td>
-                  </tr>
-                  <tr>
-                    <td data-label="Name">
-                      <div class="user">
-                        <div class="thumb"><img src="<?= $assets ?>/images/investor/3.jpg" alt="image"></div>
-                        <span>Thomas Okeyson</span>
-                      </div>
-                    </td>
-                    <td data-label="Date">Dec 12, 2020</td>
-                    <td data-label="Amount">$ 10000</td>
-                    <td data-label="Gateway">Stripe Storefront</td>
-                  </tr>
-                  <tr>
-                    <td data-label="Name">
-                      <div class="user">
-                        <div class="thumb"><img src="<?= $assets ?>/images/investor/6.jpg" alt="image"></div>
-                        <span>Thomas Okeyson</span>
-                      </div>
-                    </td>
-                    <td data-label="Date">Dec 12, 2020</td>
-                    <td data-label="Amount">$ 6500</td>
-                    <td data-label="Gateway">Stripe Hosted</td>
-                  </tr>
-                  <tr>
-                    <td data-label="Name">
-                      <div class="user">
-                        <div class="thumb"><img src="<?= $assets ?>/images/investor/7.jpg" alt="image"></div>
-                        <span>Thomas Okeyson</span>
-                      </div>
-                    </td>
-                    <td data-label="Date">Dec 12, 2020</td>
-                    <td data-label="Amount">$ 6500</td>
-                    <td data-label="Gateway">Stripe Hosted</td>
-                  </tr>
-                  <tr>
-                    <td data-label="Name">
-                      <div class="user">
-                        <div class="thumb"><img src="<?= $assets ?>/images/investor/8.jpg" alt="image"></div>
-                        <span>Thomas Okeyson</span>
-                      </div>
-                    </td>
-                    <td data-label="Date">Dec 12, 2020</td>
-                    <td data-label="Amount">$ 6500</td>
-                    <td data-label="Gateway">Stripe Hosted</td>
-                  </tr>
+                  <?php
+                  $transactions = "SELECT * FROM `transactions`";
+                  $transactions = mysqli_query($Core->dbCon, $transactions);
+                  while ($transaction = mysqli_fetch_object($transactions)) : ?>
+                    <tr>
+                      <td data-label="Name">
+                        <div class="user">
+                          <div class="thumb"><img src="<?= $assets ?>/images/investor/1.jpg" alt="image"></div>
+                          <span><?= $Core->GetUserInfo($transaction->user)->name ?></span>
+                        </div>
+                      </td>
+                      <td data-label="Date"><?= $transaction->created ?></td>
+                      <td data-label="Amount">$<?= $transaction->amount ?></td>
+                      <td data-label="Gateway"><?= $transaction->type ?></td>
+                    </tr>
+                  <?php endwhile; ?>
                 </tbody>
               </table>
             </div>
@@ -833,72 +741,23 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td data-label="Name">
-                      <div class="user">
-                        <div class="thumb"><img src="<?= $assets ?>/images/investor/1.jpg" alt="image"></div>
-                        <span>fahaddevs</span>
-                      </div>
-                    </td>
-                    <td data-label="Date">Nov 22, 2020</td>
-                    <td data-label="Amount">$ 5000</td>
-                    <td data-label="Gateway">Stripe Hosted</td>
-                  </tr>
-                  <tr>
-                    <td data-label="Name">
-                      <div class="user">
-                        <div class="thumb"><img src="<?= $assets ?>/images/investor/2.jpg" alt="image"></div>
-                        <span>Jon Tulsa</span>
-                      </div>
-                    </td>
-                    <td data-label="Date">Dec 11, 2020</td>
-                    <td data-label="Amount">$ 1000</td>
-                    <td data-label="Gateway">Stripe Hosted</td>
-                  </tr>
-                  <tr>
-                    <td data-label="Name">
-                      <div class="user">
-                        <div class="thumb"><img src="<?= $assets ?>/images/investor/3.jpg" alt="image"></div>
-                        <span>Thomas Okeyson</span>
-                      </div>
-                    </td>
-                    <td data-label="Date">Dec 12, 2020</td>
-                    <td data-label="Amount">$ 10000</td>
-                    <td data-label="Gateway">Stripe Storefront</td>
-                  </tr>
-                  <tr>
-                    <td data-label="Name">
-                      <div class="user">
-                        <div class="thumb"><img src="<?= $assets ?>/images/investor/6.jpg" alt="image"></div>
-                        <span>Thomas Okeyson</span>
-                      </div>
-                    </td>
-                    <td data-label="Date">Dec 12, 2020</td>
-                    <td data-label="Amount">$ 6500</td>
-                    <td data-label="Gateway">Stripe Hosted</td>
-                  </tr>
-                  <tr>
-                    <td data-label="Name">
-                      <div class="user">
-                        <div class="thumb"><img src="<?= $assets ?>/images/investor/7.jpg" alt="image"></div>
-                        <span>Thomas Okeyson</span>
-                      </div>
-                    </td>
-                    <td data-label="Date">Dec 12, 2020</td>
-                    <td data-label="Amount">$ 6500</td>
-                    <td data-label="Gateway">Stripe Hosted</td>
-                  </tr>
-                  <tr>
-                    <td data-label="Name">
-                      <div class="user">
-                        <div class="thumb"><img src="<?= $assets ?>/images/investor/8.jpg" alt="image"></div>
-                        <span>Thomas Okeyson</span>
-                      </div>
-                    </td>
-                    <td data-label="Date">Dec 12, 2020</td>
-                    <td data-label="Amount">$ 6500</td>
-                    <td data-label="Gateway">Stripe Hosted</td>
-                  </tr>
+                  <?php
+                  @$transactions = "SELECT * FROM `transactions`";
+                  @$transactions = mysqli_query($Core->dbCon, $transactions);
+                  while ($transaction = mysqli_fetch_object($transactions)) : ?>
+
+                    <tr>
+                      <td data-label="Name">
+                        <div class="user">
+                          <div class="thumb"><img src="<?= $assets ?>/images/investor/1.jpg" alt="image"></div>
+                          <span><?= @$Core->GetUserInfo($transaction->user)->name ?></span>
+                        </div>
+                      </td>
+                      <td data-label="Date"><?= @$transaction->created ?></td>
+                      <td data-label="Amount">$<?= @$transaction->amount ?></td>
+                      <td data-label="Gateway"><?= @$transaction->type ?></td>
+                    </tr>
+                  <?php endwhile; ?>
                 </tbody>
               </table>
             </div>

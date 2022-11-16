@@ -7,7 +7,7 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-12 text-center">
-              <a href="#0" class="footer-logo"><img src="<?=$assets?>/images/logo.png" alt="image"></a>
+              <a href="#0" class="footer-logo"><img src="<?=$assets?>/images/logo.webp" alt="image"></a>
               <ul class="footer-short-menu d-flex flex-wrap justify-content-center mt-4">
                 <li><a href="#0">Home</a></li>
                 <li><a href="#0">Privacy & Policy</a></li>

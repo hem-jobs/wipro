@@ -62,7 +62,7 @@
                         <li>For 5 Days</li>
                         <li>Total 5% + <span class="badge base--bg text-dark">Capital</span></li>
                     </ul>
-                    <div class="package-card__range mt-5 base--color">$50000 - $5000</div>
+                    <div class="package-card__range mt-5 base--color">$50000 - $500000</div>
                     <a href="./invest/<?= "vip"?>" class="cmn-btn btn-md mt-4">Invest Now</a>
                 </div><!-- package-card end -->
             </div>
