@@ -1,6 +1,6 @@
 <!-- Main Footer -->
 <footer class="main-footer">
-    <strong>Copyright &copy; 2020-<?php echo date('Y') ?> <a href="./">Wipro</a>.</strong>
+    <strong>Copyright &copy; 2007-<?php echo date('Y') ?> <a href="./">Wipro</a>.</strong>
     All rights reserved.
 
 </footer>

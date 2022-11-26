@@ -51,7 +51,7 @@ $Route->add(
         $Template = new Apps\Template;
         $Template->expire();
         $Template->cleanAll(session_delete_timout);
-        $Template->redirect(auth_url);
+        $Template->redirect("/");
     },
     'GET'
 );

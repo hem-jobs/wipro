@@ -11,6 +11,7 @@
             guarantee the fastest and the most exciting returns on your investments, but we also guarantee the
             security of your investment.</p>
           <a href="./register" class="cmn-btn text-uppercase font-weight-600 mt-4">Sign Up</a>
+          <a href="./login" class="cmn-btn text-uppercase font-weight-600 mt-4">Login</a>
         </div>
       </div>
     </div>
@@ -27,13 +28,18 @@
 
         <div class="cureency-card text-center">
           <h6 class="cureency-card__title text-white">BITCOIN PRICE</h6>
-          <span class="cureency-card__amount h-font-family font-weight-600 base--color">3150.00 USD</span>
+
+          <script src="https://crypto.com/price/static/widget/index.js"></script>
+          <div id="crypto-widget-CoinBlocks" data-theme="dark" data-design="modern" data-transparent="true" data-design="classic" data-coin-ids="1"></div>
+
         </div><!-- cureency-card end -->
       </div><!-- cureency-item end -->
       <div class="col-lg-3 col-sm-6 cureency-item mb-30">
         <div class="cureency-card text-center">
-          <h6 class="cureency-card__title text-white">BITCOIN PRICE</h6>
-          <span class="cureency-card__amount h-font-family font-weight-600 base--color">2850.00 EUR</span>
+          <h6 class="cureency-card__title text-white">ETHERIUM PRICE</h6>
+
+          <div id="crypto-widget-CoinBlocks" data-theme="dark" data-design="modern" data-transparent="true" data-design="classic" data-coin-ids="166"></div>
+
         </div><!-- cureency-card end -->
       </div><!-- cureency-item end -->
       <div class="col-lg-3 col-sm-6 cureency-item mb-30">
@@ -45,7 +51,9 @@
       <div class="col-lg-3 col-sm-6 cureency-item mb-30">
         <div class="cureency-card text-center">
           <h6 class="cureency-card__title text-white">ACTIVE TRADES</h6>
-          <span class="cureency-card__amount h-font-family font-weight-600 base--color">2,545,875</span>
+          <span class="cureency-card__amount h-font-family font-weight-600 base--color">1,545,875</span>
+
+
         </div><!-- cureency-card end -->
       </div><!-- cureency-item end -->
     </div>
@@ -68,7 +76,7 @@
             minimizing any possible risks and offering a high-quality service, allowing us to automate and simplify
             the relations between the investors and the trustees. We work towards increasing your profit margin by
             profitable investment. We look forward to you being part of our community.</p>
-          <a href="./register" class="cmn-btn mt-4">MORE INFO</a>
+          <a href="./about" class="cmn-btn mt-4">MORE INFO</a>
         </div><!-- about-content end -->
       </div>
     </div>
@@ -123,7 +131,7 @@
             <li>For 5 Days</li>
             <li>Total 27.5% + <span class="badge base--bg text-dark">Capital</span></li>
           </ul>
-          <div class="package-card__range mt-5 base--color">$50000 - $5000</div>
+          <div class="package-card__range mt-5 base--color">$50000 - $500000</div>
           <a href="./invest/<?= "vip" ?>" class="cmn-btn btn-md mt-4">Invest Now</a>
         </div><!-- package-card end -->
       </div>
@@ -215,8 +223,8 @@
             </div>
             <h4 class="choose-card__title base--color">Referral Program</h4>
           </div>
-          <p>We are offering a certain level of referral income through our referral program. you can increase your
-            income by simply refer a few people.</p>
+          <p>We are offering a 10% referral income through our referral program. You can increase your
+            income by simply refering a few people.</p>
         </div><!-- choose-card end -->
       </div>
       <div class="col-xl-4 col-md-6 mb-30">
@@ -357,9 +365,7 @@
               <div class="card-body">
                 Deposit and withdrawal are available for at any time. Be sure, that your funds are not used in any
                 ongoing trade before the withdrawal. The available amount is shown in your dashboard on the main
-                page of Investing platform. Deposit and withdrawal are available for at any time. Be sure, that your
-                funds are not used in any ongoing trade before the withdrawal. The available amount is shown in your
-                dashboard on the main page of Investing platform.
+                page of Investing platform.
               </div>
             </div>
           </div>
@@ -374,8 +380,7 @@
             </div>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
               <div class="card-body">
-                You can see this anytime on your accounts dashboard. You can see this anytime on your accounts
-                dashboard.
+                You can see this anytime on your accounts dashboard.
               </div>
             </div>
           </div>
@@ -390,8 +395,7 @@
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
               <div class="card-body">
-                Visit the password reset page, type in your email address and click the `Reset` button. Visit the
-                password reset page, type in your email address and click the `Reset` button.
+                Visit the password reset page, type in your email address and click the `Reset` button.
               </div>
             </div>
           </div>
@@ -408,9 +412,7 @@
               <div class="card-body">
                 You will get an automatic notification once we send the funds and you can always check your
                 transactions or account balance. Your chosen payment system dictates how long it will take for the
-                funds to reach you. You will get an automatic notification once we send the funds and you can always
-                check your transactions or account balance. Your chosen payment system dictates how long it will
-                take for the funds to reach you.
+                funds to reach you.
               </div>
             </div>
           </div>
@@ -426,8 +428,7 @@
             <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
               <div class="card-body">
                 You can withdraw the full amount of your account balance minus the funds that are used currently for
-                supporting opened positions. You can withdraw the full amount of your account balance minus the
-                funds that are used currently for supporting opened positions.
+                supporting opened positions.
               </div>
             </div>
           </div>
@@ -583,10 +584,10 @@
       <div class="col-xl-3 col-lg-4 col-sm-6 mb-30">
         <div class="team-card">
           <div class="team-card__thumb">
-            <img src="<?= $assets ?>/images/investor/1.jpg" alt="image">
+            <img src="<?= $assets ?>/images/investor/ceo.png" alt="image">
           </div>
           <div class="team-card__content">
-            <h4 class="name mb-1">Fahad Faiz Mummad</h4>
+            <h4 class="name mb-1">Thiery Delaporte</h4>
             <span class="designation">CEO</span>
           </div>
         </div><!-- team-card end -->

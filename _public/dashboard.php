@@ -22,5 +22,18 @@ $Route->add('/dashboard/p2p', function () {
 }, 'GET');
 
 //dashboard Profile page
-$Route->add("/dashboard/profile", function () {
+$Route->add("/dashboard/withdraw_approve", function () {
+    $Template = new Apps\Template(auth_url);
+    $Core = new Apps\Core;
+    $User = $Core->GetUserInfo($Template->storage("accid"));
+    if($User->role == "admin"){
+        $withdrawals = $Core->GetUnapprovedWithdrawals();
+        $Template->addheader("dashboard.layouts.header");
+        $Template->addfooter("dashboard.layouts.footer");
+        $Template->assign("withdrawals", $withdrawals);
+        $Template->assign("title", "Approve Withdrawals");
+        $Template->render("dashboard.approve_withdraw");
+    }
+    $Template->setError("You are not an approved user for this operation", "warning", "/dashboard");
+    $Template->redirect("/dashboard");
 }, "GET");

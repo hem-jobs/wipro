@@ -54,7 +54,7 @@
                 <div class="row justify-content-center">
                     <div class="col-xl-5 col-lg-7">
                         <div class="account-card">
-                            <div class="account-card__header bg_img overlay--one" data-background="<?= $assets ?>/images/bg/bg-6.jpg">
+                            <div class="account-card__header bg_img overlay--one" data-background="<?= $assets ?>/images/bg/bg-6.webp">
                                 <h2 class="section-title">Welcome to <span class="base--color">Wipro</span></h2>
                                <p><?=$Self->Toast()?></p>
                                 <p>Start your journey to true <span class="base--color">Financial</span> freedom</p>
@@ -64,7 +64,7 @@
                                 <form method="post" action="./user/login" class="mt-4">
                                     <div class="form-group">
                                         <label>User email</label>
-                                        <input type="email" required name="email" class="form-control" placeholder="Enter your email">
+                                        <input type="text" required name="email" class="form-control" placeholder="Enter your email or Username">
                                     </div>
                                     <div class="form-group">
                                         <label>Password</label>

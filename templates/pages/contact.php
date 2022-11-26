@@ -25,16 +25,16 @@
                             <h2 class="font-weight-bold">Contact.</h2>
                             <h2 class="font-weight-bold">Get in touch.</h2>
                             <span>Leave us a message</span>
-                            <form class="contact-form mt-4">
+                            <form class="contact-form mt-4" action="./messages/send" method="post">
                                 <div class="form-row">
                                     <div class="form-group col-lg-6">
-                                        <input type="text" name="contact-name" placeholder="Full Name" class="form-control">
+                                        <input type="text" name="name" placeholder="Full Name" class="form-control">
                                     </div>
                                     <div class="form-group col-lg-6">
-                                        <input type="email" name="contact-name" placeholder="Email Address" class="form-control">
+                                        <input type="email" name="emmail" placeholder="Email Address" class="form-control">
                                     </div>
                                     <div class="form-group col-lg-12">
-                                        <textarea class="form-control" placeholder="Message"></textarea>
+                                        <textarea class="form-control" placeholder="Message" name="message"></textarea>
                                     </div>
                                     <div class="col-lg-12">
                                         <button type="submit" class="cmn-btn">Send Message</button>

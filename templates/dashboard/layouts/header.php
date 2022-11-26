@@ -120,15 +120,15 @@ $User = $Core->GetUserInfo($Template->storage('accid'));
 
                         </li>
                         <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link">
+                            <a href="./users/deposit" class="nav-link">
                                 <i class="nav-icon fas fa-money-check"></i>
                                 <p>
-                                    Deposits
+                                    Fund Wallet
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link">
+                            <a href="./dashboard/p2p" class="nav-link">
                                 <i class="nav-icon fas fa-sync"></i>
                                 <p>
                                     P2P
@@ -137,7 +137,7 @@ $User = $Core->GetUserInfo($Template->storage('accid'));
                         </li>
 
                         <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link">
+                            <a href="./dashboard/withdraw" class="nav-link">
                                 <i class="nav-icon fas fa-money-bill"></i>
                                 <p>
                                     Withdrawals
@@ -145,11 +145,31 @@ $User = $Core->GetUserInfo($Template->storage('accid'));
                             </a>
 
                         </li>
+                        <?php if($User->role == 'admin'): ?>
                         <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link">
+                            <a href="./dashboard/withdraw_approve" class="nav-link">
+                                <i class="nav-icon fas fa-money-bill"></i>
+                                <p>
+                                    Approve Withdrawals
+                                </p>
+                            </a>
+
+                        </li>
+                       <?php endif; ?>
+                        <li class="nav-item">
+                            <a href="./plan" class="nav-link">
                                 <i class="nav-icon fas fa-arrow-down"></i>
                                 <p>
                                     Invest
+                                </p>
+                            </a>
+
+                        </li>
+                        <li class="nav-item">
+                            <a href="./auth/logout" class="nav-link">
+                                <i class="nav-icon fa fa-power-off"></i>
+                                <p>
+                                    Logout
                                 </p>
                             </a>
 

@@ -75,36 +75,47 @@ $Route->add('/user/create-account', function () {
     $Data = $Core->data;
     $email = $Data->email;
     $name = $Data->name;
-    $ref_id = $Data->ref_id;
+    $username = $Data->username;
+    $ref_id = $Core->ConvertIdUsername($Data->ref_id);
     $password = md5($Data->password . encrypt_salt);
+    $repassword = md5($Data->repassword . encrypt_salt);
+    if ($password == $repassword) {
+        $hash = md5($Data->email . encrypt_salt);
+        $created = $Core->CreateUser($email, $name, $ref_id, $password, $hash, $username);
+        if ($created) {
+            $created = (int)$created;
+            $Template->authorize($created);
+            $Login = $Core->GetUserInfo($created);
+            $subject = "Welcome to Wipro Investments";
 
-    $hash = md5($Data->email . encrypt_salt);
-    $created = $Core->CreateUser($email, $name, $ref_id, $password, $hash);
-    if ($created) {
-        $created = (int)$created;
-        $Template->authorize($created);
-        $Login = $Core->GetUserInfo($created);
-        $subject = "Welcome to Wipro Investments";
+            $mailbody = "
+            <div class=\"container-fluid background-secondary m-5\">
+            <img src=\"https://wiproinvestment.com/templates/assets/images/logo.webp\" alt=\"Logo\">
+            <h1>Welcome to Wipro {$Login->name}</h1>
+            </div>
+            <div class=\"card\">
+            <br />
+            <h2>Your account creation was successful</h2>
+            <h2 class=\"font-weight-bold\">Your username is: {$Login->username}</h2>
+            <br />
+            <p>Click on the link below 👇 to verify your email address.</p>
+            <br />
+            <a href=\"http://www.wiproinvestment.com/activate_user/$hash\" style=\"color:gold;font-size: 16px;border:1px solid blue; text-decoration: none; margin: 16px;\">Activate</a>
+            <br />
+            <br />
+            </div>
+            <p>Warm regards from the Technical Support Wipro Investments</p>
+            <br/>
+            ";
 
-        $mailbody = "
-        <h1>Welcome to Wipro</h1>
-        <br />
-        <h2>Your account creation was successful</h2>
-        <br />
-        <p>Click on the link below 👇 to verify your email address.</p>
-        <br />
-        <a href=\"http://www.wiproinvestment.com/activate_user/$hash\" style=\"color:blue;font-size: 16px;border:1px solid blue; text-decoration: none;\">Activate</a>
-        <br />
-        <br />
-        <p>Warm regards from the Technical Support Wipro Investments</p>
-        <br/>
-         ";
-
-        $Core->SendMail($Login->email, $Login->name, $subject, $mailbody);
-        $Template->setError('Account created successfully', 'success', "/dashboard");
-        $Template->redirect("/dashboard");
+            $Core->SendMail($Login->email, $Login->name, $subject, $mailbody);
+            $Template->setError('Account created successfully', 'success', "/dashboard");
+            $Template->redirect("/dashboard");
+        }
+        $Template->setError('Account creation failed, check email and username and ensure you are not reusing them', 'warning', "/register");
+        $Template->redirect("/register");
     }
-    $Template->setError('Account creation failed', 'warning', "/register");
+    $Template->setError('Passwords did not match', 'danger', "/register");
     $Template->redirect("/register");
 }, 'POST');
 
@@ -119,11 +130,13 @@ $Route->add('/user/login', function () {
     $password = md5($Data->password . encrypt_salt);
 
     $login = $Core->UserLogin($email, $password);
-    if ($login->id) {
-        $Template->authorize($login->id);
-        $Template->store("accid", $login->id);
-        $Template->setError('', 'success', "/dashboard");
-        $Template->redirect("/dashboard");
+    if ($login) {
+        if ($login->id) {
+            $Template->authorize($login->id);
+            $Template->store("accid", $login->id);
+            $Template->setError('', 'success', "/dashboard");
+            $Template->redirect("/dashboard");
+        }
     }
     $Template->setError('Login Failed!!! check credentials and try again', 'danger', "/login");
     $Template->redirect("/login");
@@ -160,3 +173,22 @@ $Route->add('/users/p2p/send', function () {
     $Template->setError("No Such Account", "warning", "/dashboard");
     $Template->redirect("/dashboard");
 }, 'POST');
+
+
+$Route->add("/messages/send", function () {
+    $Template = new Apps\Template;
+    $Core  = new Apps\Core;
+    $Data = $Core->data;
+    $email = $Data->email;
+    $name = $Data->name;
+    $message = $Data->message;
+
+    $sql = "INSERT INTO `messages` (`email`, `name`, `message`) VALUES ('$email', '$name', '$message)";
+    $send = mysqli_query($Core->dbCon, $sql);
+    if ($send) {
+        $Template->setError("Message sent successfully", "success", "/contact");
+        $Template->redirect("/contact");
+    }
+    $Template->setError("Message not sent", "success", "/contact");
+    $Template->redirect("/contact");
+}, "GET");

@@ -12,9 +12,9 @@ class Core extends Model
 	{
 		parent::__construct();
 	}
-	public function CreateUser($email, $name, $ref_id, $password, $hash)
+	public function CreateUser($email, $name, $ref_id, $password, $hash, $username)
 	{
-		$sql = "INSERT INTO `user` (`email`,`name`, `ref_id`, `password`, `hash`) VALUES ('$email', '$name', '$ref_id', '$password', '$hash')";
+		$sql = "INSERT INTO `user` (`email`,`name`, `ref_id`, `password`, `hash`, `username`) VALUES ('$email', '$name', '$ref_id', '$password', '$hash', '$username')";
 		$created = mysqli_query($this->dbCon, $sql);
 		if ($created) {
 			$created = mysqli_insert_id($this->dbCon);
@@ -22,9 +22,16 @@ class Core extends Model
 		}
 		return $created;
 	}
+	public function ConvertIdUsername($username)
+	{
+		$sql = "SELECT * FROM user WHERE username= '$username'";
+		$sql = mysqli_query($this->dbCon, $sql);
+		$user = mysqli_fetch_object($sql);
+		return $user->id;
+	}
 	public function UserLogin($email, $password)
 	{
-		$sql = "SELECT * FROM `user` WHERE `email`='$email' AND `password`='$password'";
+		$sql = "SELECT * FROM `user` WHERE `email`='$email' OR `username`='$email' AND `password`='$password'";
 		$login = mysqli_query($this->dbCon, $sql);
 		if (!$login->num_rows) {
 			return false;
@@ -75,6 +82,10 @@ class Core extends Model
 	public function CreateWithdrawal($id, $coin, $address, $amount, $status, $trans_id)
 	{
 		$sql = "INSERT INTO `withdrawals`(`user`, `coin`, `address`, `amount`, `status`, `trans_id`) VALUES ('$id','$coin','$address','$amount', '$status', '$trans_id')";
+		return mysqli_query($this->dbCon, $sql);
+	}
+	public function GetUnapprovedWithdrawals(){
+		$sql = "SELECT * FROM `withdrawals` WHERE `status` = 'pending'";
 		return mysqli_query($this->dbCon, $sql);
 	}
 	public function ApproveWithdrawal($id, $status)

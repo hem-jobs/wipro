@@ -54,12 +54,13 @@
                 <div class="row justify-content-center">
                     <div class="col-xl-5 col-lg-7">
                         <div class="account-card">
-                            <div class="account-card__header bg_img overlay--one" data-background="<?= $assets ?>/images/bg/bg-6.jpg">
+                            <div class="account-card__header bg_img overlay--one" data-background="<?= $assets ?>/images/bg/bg-6.webp">
                                 <h2 class="section-title">Welcome to <span class="base--color">Wipro</span></h2>
                                 <p><span class="base--color">Securely</span> create an account</p>
                             </div>
                             <div class="account-card__body">
                                 <h3 class="text-center">Create an Account</h2>
+                               <p><?=$Self->Toast()?></p>
                                     <form method="post" action="./user/create-account" class="mt-4">
                                         <div class="form-group">
                                             <label>Full Name</label>
@@ -70,12 +71,28 @@
                                             <input type="email" class="form-control" placeholder="Enter email address" required name="email">
                                         </div>
                                         <div class="form-group">
-                                            <label>Referal id</label>
+                                            <label>User Name</label>
+                                            <input type="text" id="user" class="form-control" placeholder="Enter a username" required name="username">
+                                        </div>
+                                        <script>
+                                            let user = document.getElementById("user");
+                                            user.addEventListener("keyup", (e) => {
+                                                let input = e.target.value;
+                                                let inputSplit = input.split(" ").join("");
+                                                e.target.value = inputSplit;
+                                            })
+                                        </script>
+                                        <div class="form-group">
+                                            <label>Referal</label>
                                             <input type="text" class="form-control" placeholder="Enter referer id" name="ref_id" value="<?= @$ref_id ?>" <?php if (isset($ref_id)) echo "readonly" ?>>
                                         </div>
                                         <div class="form-group">
                                             <label>Password</label>
                                             <input type="password" class="form-control" placeholder="Enter password" name="password" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Retype Password</label>
+                                            <input type="password" class="form-control" placeholder="Re-enter password" name="repassword" required>
                                         </div>
                                         <div class="form-row">
                                             <div class="col-sm-6">

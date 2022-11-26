@@ -17,7 +17,7 @@
       <div class="text-center ">
         <h5><?= $Self->Toast(); ?></h5>
         <h5>Your Referal Link</h5>
-        <p id="ref" style="display:inline;"><?= "https://www.wiproinvestment.com/register/{$User->id}" ?></p>
+        <p id="ref" style="display:inline;"><?php $username = $User->username; echo "https://www.wiproinvestment.com/register/{$username}" ?></p>
         <button id="copy" class="btn btn-secondary">Copy</button>
 
         <script>
@@ -62,7 +62,7 @@
             <span class="info-box-icon bg-info elevation-1"><i class="fas fa-money-bill"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Deposit</span>
+              <span class="info-box-text">Fund Wallet</span>
 
             </div>
             <!-- /.info-box-content -->
