@@ -27,7 +27,7 @@
 
                     </thead>
                     <tbody>
-                        <?php if ($num > 0) : ?>
+                        <?php if (@$num > 0) : ?>
 
                             <?php $i = 1;
                             while ($refe = mysqli_fetch_object($sql)) :  ?>

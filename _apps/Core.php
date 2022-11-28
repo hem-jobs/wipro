@@ -22,9 +22,19 @@ class Core extends Model
 		}
 		return $created;
 	}
+	public function CreateUser2($email, $name, $password, $hash, $username)
+	{
+		$sql = "INSERT INTO `user` (`email`,`name`, `password`, `hash`, `username`) VALUES ('$email', '$name', '$password', '$hash', '$username')";
+		$created = mysqli_query($this->dbCon, $sql);
+		if ($created) {
+			$created = mysqli_insert_id($this->dbCon);
+			return $created;
+		}
+		return $created;
+	}
 	public function ConvertIdUsername($username)
 	{
-		$sql = "SELECT * FROM user WHERE username= '$username'";
+		$sql = "SELECT * FROM `user` WHERE `username`= '$username'";
 		$sql = mysqli_query($this->dbCon, $sql);
 		$user = mysqli_fetch_object($sql);
 		return $user->id;
@@ -64,6 +74,21 @@ class Core extends Model
 		$sql = "UPDATE `transactions` SET `status` = '$status' WHERE `id` = '$id'";
 		return mysqli_query($this->dbCon, $sql);
 	}
+	public function DeleteTransaction($id)
+	{
+		$sql = "DELETE FROM `transactions` WHERE `id` ='$id'";
+		return mysqli_query($this->dbCon, $sql);
+	}
+	public function DeleteInvestment($id)
+	{
+		$sql = "DELETE FROM `investments` WHERE `id` ='$id'";
+		return mysqli_query($this->dbCon, $sql);
+	}
+	public function DeleteWithdrawal($id)
+	{
+		$sql = "DELETE FROM `withdrawals` WHERE `id` ='$id'";
+		return mysqli_query($this->dbCon, $sql);
+	}
 	public function CheckFirstInv($id)
 	{
 		$sql = "SELECT * FROM `investments` WHERE `user` ='$id'";
@@ -74,9 +99,14 @@ class Core extends Model
 			return true;
 		}
 	}
-	public function CreateDeposit($id, $amount, $method, $trans_id)
+	public function CreateDeposit($id, $amount, $method, $trans_id, $hash)
 	{
-		$sql = "INSERT INTO `deposits`( `user_id`, `amount`, `coin`, `trans_id`) VALUES ('$id','$amount','$method', '$trans_id')";
+		$sql = "INSERT INTO `deposits`( `user_id`, `amount`, `coin`, `trans_id`, `hash`) VALUES ('$id','$amount','$method', '$trans_id', '$hash')";
+		return mysqli_query($this->dbCon, $sql);
+	}
+	public function DeclineDeposit($id)
+	{
+		$sql = "DELETE FROM `deposits` WHERE `id` = '$id'";
 		return mysqli_query($this->dbCon, $sql);
 	}
 	public function CreateWithdrawal($id, $coin, $address, $amount, $status, $trans_id)
@@ -84,10 +114,17 @@ class Core extends Model
 		$sql = "INSERT INTO `withdrawals`(`user`, `coin`, `address`, `amount`, `status`, `trans_id`) VALUES ('$id','$coin','$address','$amount', '$status', '$trans_id')";
 		return mysqli_query($this->dbCon, $sql);
 	}
-	public function GetUnapprovedWithdrawals(){
+	public function GetUnapprovedWithdrawals()
+	{
 		$sql = "SELECT * FROM `withdrawals` WHERE `status` = 'pending'";
 		return mysqli_query($this->dbCon, $sql);
 	}
+	public function GetApprovedWithdrawals()
+	{
+		$sql = "SELECT * FROM `withdrawals` WHERE `status` = 'done'";
+		return mysqli_query($this->dbCon, $sql);
+	}
+
 	public function ApproveWithdrawal($id, $status)
 	{
 		$sql = "SELECT * FROM `withdrawals` WHERE `id` = '$id'";
@@ -110,11 +147,24 @@ class Core extends Model
 		$sql2 = "UPDATE `deposits` SET `status` = '$status' WHERE `id` = '$id'";
 		return mysqli_query($this->dbCon, $sql2);
 	}
-	public function CreateInvestment($id, $amount, $package, $roi, $days, $status)
+	public function GetUnapprovedDeposits()
 	{
-		$sql = "INSERT INTO `investments` (`user`, `amount`, `package`, `roi`, `days`, `status`) VALUES	 ('$id', '$amount', '$package', '$roi', '$days', '$status')";
+		$sql = "SELECT * FROM `deposits` WHERE `status` = 'pending'";
 		return mysqli_query($this->dbCon, $sql);
 	}
+	public function GetApprovedDeposits()
+	{
+		$sql = "SELECT * FROM `deposits` WHERE `status` = 'done'";
+		return mysqli_query($this->dbCon, $sql);
+	}
+	public function CreateInvestment($id, $amount, $package, $roi, $days, $status, $trans_id)
+	{
+		$sql = "INSERT INTO `investments` (`user`, `amount`, `package`, `roi`, `days`, `status`, `trans_id`) VALUES	 ('$id', '$amount', '$package', '$roi', '$days', '$status', '$trans_id');";
+		return mysqli_query($this->dbCon, $sql);
+	}
+
+
+	
 	public function SendMail($email, $name, $subject, $mailbody)
 	{
 		$mj = new \Mailjet\Client('2e3b98f80ab0a9cfeab5799c9f5ae7fb', 'dfa98525a944080610383d6895aa4bd7', true, ['version' => 'v3.1']);
@@ -139,4 +189,5 @@ class Core extends Model
 		];
 		$response = $mj->post(\Mailjet\Resources::$Email, ['body' => $body]);
 	}
+	
 }

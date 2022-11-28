@@ -76,12 +76,21 @@ $Route->add('/user/create-account', function () {
     $email = $Data->email;
     $name = $Data->name;
     $username = $Data->username;
-    $ref_id = $Core->ConvertIdUsername($Data->ref_id);
+    if (isset($ref_id)) {
+        $ref_id = $Core->ConvertIdUsername($Data->ref_id);
+    } else {
+        $ref_id = null;
+    }
     $password = md5($Data->password . encrypt_salt);
     $repassword = md5($Data->repassword . encrypt_salt);
     if ($password == $repassword) {
         $hash = md5($Data->email . encrypt_salt);
-        $created = $Core->CreateUser($email, $name, $ref_id, $password, $hash, $username);
+        if ($ref_id) {
+
+            $created = $Core->CreateUser($email, $name, $ref_id, $password, $hash, $username);
+        } else {
+            $created  = $Core->CreateUser2($email, $name, $password, $hash, $username);
+        }
         if ($created) {
             $created = (int)$created;
             $Template->authorize($created);
@@ -191,4 +200,10 @@ $Route->add("/messages/send", function () {
     }
     $Template->setError("Message not sent", "success", "/contact");
     $Template->redirect("/contact");
+}, "GET");
+
+$Route->add("/test/{email}/{name}", function($name, $email){
+    $Core = new Apps\Core;
+    $Core->SendMail2($email,$name);
+    $Core->debug("Sent");
 }, "GET");

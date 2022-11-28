@@ -711,13 +711,17 @@
                 </thead>
                 <tbody>
                   <?php
-                  $transactions = "SELECT * FROM `transactions`";
+                  $transactions = "SELECT * FROM `transactions` WHERE `type` = 'deposit'";
                   $transactions = mysqli_query($Core->dbCon, $transactions);
                   while ($transaction = mysqli_fetch_object($transactions)) : ?>
                     <tr>
                       <td data-label="Name">
                         <div class="user">
-                          <div class="thumb"><img src="<?= $assets ?>/images/investor/1.jpg" alt="image"></div>
+                          <?php if (isset($Core->GetUserInfo($transaction->user)->photo) && $Core->GetUserInfo($transaction->user)->name != '') : ?>
+                            <div class="thumb"><img src="_store/<?= $Core->GetUserInfo($transaction->user)->photo ?>" alt="image"></div>
+                          <?php else : ?>
+                            <div class="thumb"><img src="_store/user.jpg" alt="image"></div>
+                          <?php endif; ?>
                           <span><?= $Core->GetUserInfo($transaction->user)->name ?></span>
                         </div>
                       </td>
@@ -743,14 +747,18 @@
                 </thead>
                 <tbody>
                   <?php
-                  @$transactions = "SELECT * FROM `transactions`";
+                  @$transactions = "SELECT * FROM `transactions` WHERE `type` = 'withdrawal'";
                   @$transactions = mysqli_query($Core->dbCon, $transactions);
                   while ($transaction = mysqli_fetch_object($transactions)) : ?>
 
                     <tr>
                       <td data-label="Name">
                         <div class="user">
-                          <div class="thumb"><img src="<?= $assets ?>/images/investor/1.jpg" alt="image"></div>
+                          <?php if (isset($Core->GetUserInfo($transaction->user)->photo) && $Core->GetUserInfo($transaction->user)->name != '') : ?>
+                            <div class="thumb"><img src="_store/<?= $Core->GetUserInfo($transaction->user)->photo ?>" alt="image"></div>
+                          <?php else : ?>
+                            <div class="thumb"><img src="_store/user.jpg" alt="image"></div>
+                          <?php endif; ?>
                           <span><?= @$Core->GetUserInfo($transaction->user)->name ?></span>
                         </div>
                       </td>

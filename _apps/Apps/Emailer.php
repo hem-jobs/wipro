@@ -53,16 +53,16 @@ class Emailer
 			$PHPmailer->AddReplyTo($this->replyEmail, $this->replyName);
 			$PHPmailer->Subject = $this->subject;
 
-			if (true) {
-				$PHPmailer->Sender = $this->fromEmail;
-				$PHPmailer->DKIM_domain = domain;
-				$PHPmailer->DKIM_private = "https://wiproinvestment.com/_dkim/private.key";
+			// if (true) {
+			// 	$PHPmailer->Sender = $this->fromEmail;
+			// 	$PHPmailer->DKIM_domain = domain;
+			// 	$PHPmailer->DKIM_private = "";
 				
-				$PHPmailer->DKIM_selector = 'default._domainkey';
-				$PHPmailer->DKIM_passphrase = '';
-				$PHPmailer->DKIM_identity = $this->fromEmail;
-				$PHPmailer->addCustomHeader("BIMI-Selector:v=BIMI1;s=default;");
-			}
+			// 	$PHPmailer->DKIM_selector = 'default._domainkey';
+			// 	$PHPmailer->DKIM_passphrase = '';
+			// 	$PHPmailer->DKIM_identity = $this->fromEmail;
+			// 	$PHPmailer->addCustomHeader("BIMI-Selector:v=BIMI1;s=default;");
+			// }
 
 			$PHPmailer->isHTML(true);
 			$PHPmailer->MsgHTML($html);

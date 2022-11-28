@@ -46,40 +46,53 @@ $User = $Core->GetUserInfo($Template->storage('accid'));
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
 
-                <!-- Messages Dropdown Menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)">
-                        <i class="far fa-comments"></i>
-                        <span class="badge badge-danger navbar-badge">1</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <a href="javascript:void(0)" class="dropdown-item">
 
-                        </a>
 
-                        <!-- Message Start -->
-                        <div class="media">
-                            <img src="<?= $assets ?>/admin/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                            <div class="media-body">
-                                <h3 class="dropdown-item-title">
-                                    Nora Silvester
-                                    <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                                </h3>
-                                <p class="text-sm">The subject goes here</p>
-                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                            </div>
-                        </div>
-                        <!-- Message End -->
+                <li class="nav-item">
+                    <!-- GTranslate: https://gtranslate.io/ -->
+                    <div id="google_translate_element2"></div>
+                    <script type="text/javascript">
+                        function googleTranslateElementInit2() {
+                            new google.translate.TranslateElement({
+                                pageLanguage: 'en',
+                                autoDisplay: false
+                            }, 'google_translate_element2');
+                        }
+                    </script>
+                    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
 
-                    </div>
+
+                    <script type="text/javascript">
+                        /* <![CDATA[ */
+                        eval(function(p, a, c, k, e, r) {
+                            e = function(c) {
+                                return (c < a ? '' : e(parseInt(c / a))) + ((c = c % a) > 35 ? String.fromCharCode(c + 29) : c.toString(36))
+                            };
+                            if (!''.replace(/^/, String)) {
+                                while (c--) r[e(c)] = k[c] || e(c);
+                                k = [function(e) {
+                                    return r[e]
+                                }];
+                                e = function() {
+                                    return '\\w+'
+                                };
+                                c = 1
+                            };
+                            while (c--)
+                                if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]);
+                            return p
+                        }('6 7(a,b){n{4(2.9){3 c=2.9("o");c.p(b,f,f);a.q(c)}g{3 c=2.r();a.s(\'t\'+b,c)}}u(e){}}6 h(a){4(a.8)a=a.8;4(a==\'\')v;3 b=a.w(\'|\')[1];3 c;3 d=2.x(\'y\');z(3 i=0;i<d.5;i++)4(d[i].A==\'B-C-D\')c=d[i];4(2.j(\'k\')==E||2.j(\'k\').l.5==0||c.5==0||c.l.5==0){F(6(){h(a)},G)}g{c.8=b;7(c,\'m\');7(c,\'m\')}}', 43, 43, '||document|var|if|length|function|GTranslateFireEvent|value|createEvent||||||true|else|doGTranslate||getElementById|google_translate_element2|innerHTML|change|try|HTMLEvents|initEvent|dispatchEvent|createEventObject|fireEvent|on|catch|return|split|getElementsByTagName|select|for|className|goog|te|combo|null|setTimeout|500'.split('|'), 0, {}))
+                        /* ]]> */
+                    </script>
+
                 </li>
-                <!-- Notifications Dropdown Menu -->
-
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="javascript:void(0)" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
                 </li>
+
+
 
             </ul>
         </nav>
@@ -98,7 +111,11 @@ $User = $Core->GetUserInfo($Template->storage('accid'));
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="<?= $assets ?>/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                        <?php if (isset($User->photo) && $User->photo != "") : ?>
+                            <img src="_store/<?= $User->photo ?>" class="img-circle elevation-2" alt="User Image">
+                        <?php else : ?>
+                            <img src="_store/user.jpg" class="img-circle elevation-2" alt="User Image">
+                        <?php endif; ?>
                     </div>
                     <div class="info">
                         <a href="./dashboard" class="d-block"><?= $User->name ?></a>
@@ -111,7 +128,7 @@ $User = $Core->GetUserInfo($Template->storage('accid'));
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                         <li class="nav-item menu-open">
-                            <a href="javascript:void(0)" class="nav-link active">
+                            <a href="./dashboard/user/profile" class="nav-link active">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     Profile
@@ -127,6 +144,16 @@ $User = $Core->GetUserInfo($Template->storage('accid'));
                                 </p>
                             </a>
                         </li>
+                        <?php if ($User->role == 'admin') : ?>
+                            <li class="nav-item">
+                                <a href="./dashboard/deposit_approve" class="nav-link">
+                                    <i class="nav-icon fas fa-receipt"></i>
+                                    <p>
+                                        Approve Deposits
+                                    </p>
+                                </a>
+                            </li>
+                        <?php endif; ?>
                         <li class="nav-item">
                             <a href="./dashboard/p2p" class="nav-link">
                                 <i class="nav-icon fas fa-sync"></i>
@@ -145,17 +172,17 @@ $User = $Core->GetUserInfo($Template->storage('accid'));
                             </a>
 
                         </li>
-                        <?php if($User->role == 'admin'): ?>
-                        <li class="nav-item">
-                            <a href="./dashboard/withdraw_approve" class="nav-link">
-                                <i class="nav-icon fas fa-money-bill"></i>
-                                <p>
-                                    Approve Withdrawals
-                                </p>
-                            </a>
+                        <?php if ($User->role == 'admin') : ?>
+                            <li class="nav-item">
+                                <a href="./dashboard/withdraw_approve" class="nav-link">
+                                    <i class="nav-icon fas fa-money-bill"></i>
+                                    <p>
+                                        Approve Withdrawals
+                                    </p>
+                                </a>
 
-                        </li>
-                       <?php endif; ?>
+                            </li>
+                        <?php endif; ?>
                         <li class="nav-item">
                             <a href="./plan" class="nav-link">
                                 <i class="nav-icon fas fa-arrow-down"></i>
@@ -165,6 +192,17 @@ $User = $Core->GetUserInfo($Template->storage('accid'));
                             </a>
 
                         </li>
+                        <?php if ($User->role == 'admin') : ?>
+                            <li class="nav-item">
+                                <a href="./dashboard/investment_approve" class="nav-link">
+                                    <i class="nav-icon fas fa-check"></i>
+                                    <p>
+                                        Investment Approval
+                                    </p>
+                                </a>
+
+                            </li>
+                        <?php endif; ?>
                         <li class="nav-item">
                             <a href="./auth/logout" class="nav-link">
                                 <i class="nav-icon fa fa-power-off"></i>

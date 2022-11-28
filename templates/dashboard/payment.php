@@ -35,6 +35,7 @@
             <ol class="list">
                 <li class="list-item">Copy the <?= $method ?> Wallet Address above</li>
                 <li class="list-item">Transfer the $<?= $amount ?> equivalent to the address</li>
+                <li class="list-item">Copy the <?= $method ?> transaction hash and paste in the box below</li>
                 <li class="list-item">Click the Complete Transaction button and proceed</li>
             </ol>
 
@@ -47,6 +48,8 @@
                 <input type="hidden" name="id" value="<?= $id ?>">
                 <input type="hidden" name="amount" value="<?= $amount ?>">
                 <input type="hidden" name="method" value="<?= $method ?>">
+                <label for="hash">Transaction Hash or ID</label>
+                <input type="text" name="hash" required class="form-control" minlength="10" placeholder="Enter transaction Hash">
                 <button type="submit" class="btn btn-secondary btn-block">Complete Transaction</button>
             </form>
         </div>

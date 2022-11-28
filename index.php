@@ -1,9 +1,11 @@
 <?php
 
+use Apps\Template;
 
 define('DOT', '.');
 require_once DOT . "/bootstrap.php";
 require_once DOT . "/_public/user.php";
+require_once DOT . "/_public/profiles.php";
 include_once DOT . "/_public/investments.php";
 include_once DOT . "/_public/dashboard.php";
 
@@ -17,6 +19,30 @@ $Route->add('/', function () {
     $Template->assign("title", "Wipro Home");
 
     $Template->render("home");
+}, 'GET');
+
+
+
+//Home page//
+$Route->add('/testmail', function () {
+
+    $name = "Agu Chux";
+    $body = "Welcome to";
+
+    $EmailTemplate = new Apps\EmailTemplate('mail.default');
+    $EmailTemplate->fullname = $name;
+    $EmailTemplate->body = $body;
+
+    $mailer = new Apps\Emailer();
+    $mailer->SetTemplate($EmailTemplate);
+    $mailer->toEmail = "obiefunamarcel@gmail.com";
+    $mailer->toName = "Agu Chux";
+    $mailer->fromEmail = "info@wiproinvestment.com";
+    $mailer->fromName = "Wipro";
+
+    $sent = $mailer->send();
+    die($sent);
+    
 }, 'GET');
 
 

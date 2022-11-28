@@ -26,13 +26,50 @@ $Route->add("/dashboard/withdraw_approve", function () {
     $Template = new Apps\Template(auth_url);
     $Core = new Apps\Core;
     $User = $Core->GetUserInfo($Template->storage("accid"));
-    if($User->role == "admin"){
+    if ($User->role == "admin") {
         $withdrawals = $Core->GetUnapprovedWithdrawals();
+        $withdrawals2 = $Core->GetApprovedWithdrawals();
         $Template->addheader("dashboard.layouts.header");
         $Template->addfooter("dashboard.layouts.footer");
         $Template->assign("withdrawals", $withdrawals);
+        $Template->assign("withdrawals2", $withdrawals2);
         $Template->assign("title", "Approve Withdrawals");
         $Template->render("dashboard.approve_withdraw");
+    }
+    $Template->setError("You are not an approved user for this operation", "warning", "/dashboard");
+    $Template->redirect("/dashboard");
+}, "GET");
+
+$Route->add("/dashboard/deposit_approve", function () {
+    $Template = new Apps\Template(auth_url);
+    $Core = new Apps\Core;
+    $User = $Core->GetUserInfo($Template->storage("accid"));
+    if ($User->role == "admin") {
+        $deposits = $Core->GetUnapprovedDeposits();
+        $deposits2 = $Core->GetApprovedDeposits();
+        $Template->addheader("dashboard.layouts.header");
+        $Template->addfooter("dashboard.layouts.footer");
+        $Template->assign("deposits", $deposits);
+        $Template->assign("deposits2", $deposits2);
+        $Template->assign("title", "Approve Deposits");
+        $Template->render("dashboard.approve_deposits");
+    }
+    $Template->setError("You are not an approved user for this operation", "warning", "/dashboard");
+    $Template->redirect("/dashboard");
+}, "GET");
+
+
+$Route->add("/dashboard/investment_approve", function () {
+    $Template = new Apps\Template(auth_url);
+    $Core = new Apps\Core;
+    $User = $Core->GetUserInfo($Template->storage("accid"));
+    if ($User->role == "admin") {
+       
+        $Template->addheader("dashboard.layouts.header");
+        $Template->addfooter("dashboard.layouts.footer");
+        
+        $Template->assign("title", "Approve Investments");
+        $Template->render("dashboard.approve_investment");
     }
     $Template->setError("You are not an approved user for this operation", "warning", "/dashboard");
     $Template->redirect("/dashboard");
