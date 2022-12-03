@@ -13,14 +13,6 @@
     </div>
 </section>
 <!-- inner hero end -->
-<!-- Vimeo video embed -->
-
-<!-- <div style="padding:100% 0 0 0;position:relative;">
-    <iframe src="https://player.vimeo.com/video/772038866?h=21db87e0b6&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Rustic Filter"></iframe>
-</div>
-<script src="https://player.vimeo.com/api/player.js"></script> -->
-
-<!-- Vimeo video embed -->
 
 
 
@@ -92,7 +84,8 @@
     </div>
 </section>
 <!-- about section end -->
-
+<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/776864761?h=48f7330ee4&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Rustic Filter"></iframe></div>
+<script src="https://player.vimeo.com/api/player.js"></script>
 
 
 <section class="about-section pt-50 bg_img" data-background="<?= $assets ?>/images/bg/bg-7.webp">
@@ -249,7 +242,7 @@
                 <div class="cta-wrapper bg_img border-radius--10 text-center" data-background="<?= $assets ?>/images/bg/bg-8.webp">
                     <h2 class="title mb-3">Get Started Today With Us</h2>
                     <p>This is a Revolutionary Money Making Platform! Invest for Future in Stable Platform and Make Fast Money. Not only we guarantee the fastest and the most exciting returns on your investments, but we also guarantee the security of your investment.</p>
-                    <a href="./registration" class="cmn-btn mt-4">Join Us</a>
+                    <a href="./register" class="cmn-btn mt-4">Join Us</a>
                 </div>
             </div>
         </div>

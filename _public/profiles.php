@@ -1,8 +1,9 @@
 <?php
+use Apps\Template;
+use Apps\Core;
 
 $Route->add("/dashboard/user/profile", function () {
-    $Template = new Apps\Template(auth_url);
-    $Core = new Apps\Core;
+    $Template = new Template(auth_url);
     $Template->addheader("dashboard.layouts.header");
     $Template->addfooter("dashboard.layouts.footer");
     $Template->assign("title", "Wipro Profile");
@@ -12,13 +13,12 @@ $Route->add("/dashboard/user/profile", function () {
 
 
 $Route->add("/user/profile/photo", function () {
-    $Template = new Apps\Template(auth_url);
-    $Core = new Apps\Core;
+    $Template = new Template(auth_url);
+    $Core = new Core;
     $User = $Core->GetUserInfo($Template->storage('accid'));
     $name = md5($User->email . encrypt_salt);
 
     $handle = new \Verot\Upload\Upload($_FILES['photo']);
-    // $Core->debug((int)$handle->uploaded);
     if ($handle->uploaded) {
         $ext = $handle->file_src_name_ext;
         $handle->file_new_name_body   = $name;
@@ -45,8 +45,8 @@ $Route->add("/user/profile/photo", function () {
 
 
 $Route->add("/user/update_name", function () {
-    $Template = new Apps\Template(auth_url);
-    $Core = new Apps\Core;
+    $Template = new Template(auth_url);
+    $Core = new Core;
     $Data = $Core->data;
     $name = $Data->name;
     $email = $Data->email;
@@ -61,8 +61,8 @@ $Route->add("/user/update_name", function () {
 }, "POST");
 
 $Route->add("/user/update_password", function () {
-    $Template = new Apps\Template(auth_url);
-    $Core = new Apps\Core;
+    $Template = new Template(auth_url);
+    $Core = new Core;
     $Data = $Core->data;
     $id = $Template->storage("accid");
     $password = md5($Data->password . encrypt_salt);

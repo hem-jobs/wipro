@@ -1,9 +1,11 @@
 <?php
 
+use Apps\Core;
+use Apps\Template;
 //dashboard Home Page
 $Route->add('/dashboard', function () {
 
-    $Template = new Apps\Template(auth_url);
+    $Template = new Template(auth_url);
     $Template->addheader("dashboard.layouts.header");
     $Template->addfooter("dashboard.layouts.footer");
     $Template->assign("title", "Wipro Dashboard");
@@ -13,7 +15,7 @@ $Route->add('/dashboard', function () {
 
 $Route->add('/dashboard/p2p', function () {
 
-    $Template = new Apps\Template(auth_url);
+    $Template = new Template(auth_url);
     $Template->addheader("dashboard.layouts.header");
     $Template->addfooter("dashboard.layouts.footer");
     $Template->assign("title", "Wipro P2P");
@@ -23,8 +25,8 @@ $Route->add('/dashboard/p2p', function () {
 
 //dashboard Profile page
 $Route->add("/dashboard/withdraw_approve", function () {
-    $Template = new Apps\Template(auth_url);
-    $Core = new Apps\Core;
+    $Template = new Template(auth_url);
+    $Core = new Core;
     $User = $Core->GetUserInfo($Template->storage("accid"));
     if ($User->role == "admin") {
         $withdrawals = $Core->GetUnapprovedWithdrawals();
@@ -41,8 +43,8 @@ $Route->add("/dashboard/withdraw_approve", function () {
 }, "GET");
 
 $Route->add("/dashboard/deposit_approve", function () {
-    $Template = new Apps\Template(auth_url);
-    $Core = new Apps\Core;
+    $Template = new Template(auth_url);
+    $Core = new Core;
     $User = $Core->GetUserInfo($Template->storage("accid"));
     if ($User->role == "admin") {
         $deposits = $Core->GetUnapprovedDeposits();
@@ -60,14 +62,14 @@ $Route->add("/dashboard/deposit_approve", function () {
 
 
 $Route->add("/dashboard/investment_approve", function () {
-    $Template = new Apps\Template(auth_url);
-    $Core = new Apps\Core;
+    $Template = new Template(auth_url);
+    $Core = new Core;
     $User = $Core->GetUserInfo($Template->storage("accid"));
     if ($User->role == "admin") {
-       
+
         $Template->addheader("dashboard.layouts.header");
         $Template->addfooter("dashboard.layouts.footer");
-        
+
         $Template->assign("title", "Approve Investments");
         $Template->render("dashboard.approve_investment");
     }

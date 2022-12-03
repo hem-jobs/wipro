@@ -1,9 +1,10 @@
 <?php
 
-use Apps\MysqliDb;
+use Apps\Template;
+use Apps\Core;
 
 $Route->add('/invest/{package}', function ($package) {
-    $Template = new Apps\Template(auth_url);
+    $Template = new Template(auth_url);
     $Template->addheader("layouts.header");
     $Template->addfooter("layouts.footer");
     $Template->assign("title", "Wipro " . ucfirst($package));
@@ -13,7 +14,7 @@ $Route->add('/invest/{package}', function ($package) {
 
 
 $Route->add('/users/deposit', function () {
-    $Template = new Apps\Template(auth_url);
+    $Template = new Template(auth_url);
     $Template->addheader("dashboard.layouts.header");
     $Template->addfooter("dashboard.layouts.footer");
     $Template->assign("title", "Wipro Deposit");
@@ -21,8 +22,8 @@ $Route->add('/users/deposit', function () {
 }, "GET");
 
 $Route->add('/user/deposit', function () {
-    $Template = new Apps\Template(auth_url);
-    $Core = new Apps\Core;
+    $Template = new Template(auth_url);
+    $Core = new Core;
     $Data = $Core->data;
     $Template->addheader("dashboard.layouts.header");
     $Template->addfooter("dashboard.layouts.footer");
@@ -34,7 +35,7 @@ $Route->add('/user/deposit', function () {
 }, "POST");
 
 $Route->add('/dashboard/withdraw', function () {
-    $Template = new Apps\Template(auth_url);
+    $Template = new Template(auth_url);
     $Template->addheader("dashboard.layouts.header");
     $Template->addfooter("dashboard.layouts.footer");
     $Template->assign("title", "Wipro Withdrawal");
@@ -42,11 +43,29 @@ $Route->add('/dashboard/withdraw', function () {
 }, "GET");
 
 $Route->add("/approve_withdrawal/{id}", function ($id) {
-    $Template = new Apps\Template(auth_url);
-    $Core = new Apps\Core;
+    $Template = new Template(auth_url);
+    $Core = new Core;
     $User = $Core->GetUserInfo($Template->storage('accid'));
     if ($User->role == 'admin') {
+        $withdrawal = $Core->GetWithInfo($id);
+        $user = $Core->GetUserInfo($withdrawal->user);
+        $subject = "Withrawal Successfully";
+        $message = "
+        <h2>Your withrawal has been approved by the administrator</h2>
+        <br/>
+        <p> The \${$withdrawal->amount} equivalent of  {$withdrawal->coin}
+         has been sent to your wallet address: {$withdrawal->address}</p>
+         <br />
+         <h4> We are Wipro, We keep our word</h4>
+
+        ";
+
+
+        $Core->sendMail($user->email, $user->name, "Withdrawal Approved", $subject, $message);
+
         $Core->ApproveWithdrawal($id, "done");
+
+
         $Template->setError('Withrawal Approved', 'success', "/dashboard");
         $Template->redirect("/dashboard");
     }
@@ -55,8 +74,8 @@ $Route->add("/approve_withdrawal/{id}", function ($id) {
 }, "GET");
 
 $Route->add("/finish_investment/{id}", function ($id) {
-    $Template = new Apps\Template(auth_url);
-    $Core = new Apps\Core;
+    $Template = new Template(auth_url);
+    $Core = new Core;
     $User = $Core->GetUserInfo($Template->storage('accid'));
     if ($User->role == 'admin') {
         $sql = "SELECT * FROM `investments` WHERE `id` = '$id'";
@@ -75,6 +94,10 @@ $Route->add("/finish_investment/{id}", function ($id) {
         $update_investment = "UPDATE `investments` SET `status` = 'done' WHERE `id` = '$id'";
         $saved = mysqli_query($Core->dbCon, $update_investment);
         $Core->UpdateTransaction($invest->trans_id, 'done');
+        $subject = "Investment cycle completed";
+        $message = "Your investment has been completed, Your new balance is {$new_balance}";
+        $Core->sendMail($Investor->email, $Investor->name, "Investment Finished", $subject, $message);
+
         $Template->setError('Investment Approved', 'success', "/dashboard");
         $Template->redirect("/dashboard");
     }
@@ -83,8 +106,8 @@ $Route->add("/finish_investment/{id}", function ($id) {
 }, "GET");
 
 $Route->add("/abort_investment/{id}", function ($id) {
-    $Template = new Apps\Template(auth_url);
-    $Core = new Apps\Core;
+    $Template = new Template(auth_url);
+    $Core = new Core;
     if ($Core->GetUserInfo($Template->storage('accid'))->role == 'admin') {
         $sql = "SELECT * FROM `investments` WHERE `id` = '$id'";
         $invest = mysqli_query($Core->dbCon, $sql);
@@ -105,8 +128,8 @@ $Route->add("/abort_investment/{id}", function ($id) {
 }, "GET");
 
 $Route->add("/user/complete_deposit", function () {
-    $Template = new Apps\Template(auth_url);
-    $Core = new Apps\Core;
+    $Template = new Template(auth_url);
+    $Core = new Core;
     $Data = $Core->data;
     $id = $Data->id;
     $amount = $Data->amount;
@@ -114,6 +137,12 @@ $Route->add("/user/complete_deposit", function () {
     $hash = $Data->hash;
     $create = $Core->CreateDeposit($id, $amount, $method, $Core->AddTransaction($id, $amount, "Deposit", "pending"), $hash);
     if ($create) {
+        $user = $Core->GetUserInfo($id);
+        $subject = "Deposit Request created";
+
+        $message = "<h2>Deposit Request of \${$amount} created, waiting approval from the Admin</h2>";
+        $Core->sendMail($user->email, $user->name, "Deposit Request Created", $subject, $message);
+
         $Template->setError("\${$amount} deposited successfully Awaiting approval from the admins", "success", "/dashboard");
         $Template->redirect("/dashboard");
     }
@@ -123,10 +152,26 @@ $Route->add("/user/complete_deposit", function () {
 
 
 $Route->add("/approve_deposit/{id}", function ($id) {
-    $Template = new Apps\Template(auth_url);
-    $Core = new Apps\Core;
+    $Template = new Template(auth_url);
+    $Core = new Core;
     if ($Core->GetUserInfo($Template->storage('accid'))->role == 'admin') {
         $Core->ApproveDeposit($id, "done");
+        $deposit = $Core->GetDepInfo($id);
+        $user = $Core->GetUserInfo($deposit->user_id);
+        $subject = "Deposit Successful";
+        $message = "
+        <h2>Your Deposit has been approved by the administrator</h2>
+        <br/>
+        <p> The \${$deposit->amount} equivalent of  {$deposit->coin}
+         has been recieved from you </p>
+         <br />
+         <h4> We are Wipro, We keep our word</h4>
+
+        ";
+
+
+        $Core->sendMail($user->email, $user->name, "Deposit Approved", $subject, $message);
+
         $Template->setError("Deposit approved", "success", "/dashboard");
         $Template->redirect("/dashboard");
     }
@@ -135,10 +180,18 @@ $Route->add("/approve_deposit/{id}", function ($id) {
 }, "GET");
 
 $Route->add("/decline_deposit/{id}", function ($id) {
-    $Template = new Apps\Template(auth_url);
-    $Core = new Apps\Core;
+    $Template = new Template(auth_url);
+    $Core = new Core;
     if ($Core->GetUserInfo($Template->storage('accid'))->role == 'admin') {
         $Core->DeclineDeposit($id);
+        $deposit = $Core->GetDepInfo($id);
+        $user = $Core->GetUserInfo($deposit->user_id);
+        $subject = "Deposit Declined";
+        $message = "
+        <h2>Your Deposit has been declined by the administrators</h2>
+        <br/>
+        ";
+        $Core->sendMail($user->email, $user->name, "Deposit Declined", $subject, $message);
         $Template->setError("Deposit Declined", "success", "/dashboard");
         $Template->redirect("/dashboard");
     }
@@ -146,15 +199,15 @@ $Route->add("/decline_deposit/{id}", function ($id) {
     $Template->redirect("/dashboard");
 }, "GET");
 $Route->add("/delete_withdrawal/{id}", function ($id) {
-    $Template = new Apps\Template(auth_url);
-    $Core = new Apps\Core;
+    $Template = new Template(auth_url);
+    $Core = new Core;
     if ($Core->GetUserInfo($Template->storage('accid'))->role == 'admin') {
         $sql = "SELECT * FROM `withdrawals` WHERE `id` = '$id'";
         $sql = mysqli_query($Core->dbCon, $sql);
         $withdrawal = mysqli_fetch_object($sql);
         $Core->DeleteTransaction($withdrawal->trans_id);
         $Core->DeleteWithdrawal($id);
-        
+
         $balance = (int)$withdrawal->amount + (int)($Core->GetUserInfo($withdrawal->user)->balance);
         $Core->UpdateBalance($withdrawal->user, $balance);
         $Template->setError("Deleted withdrawal", "success", "/dashboard");
@@ -165,8 +218,8 @@ $Route->add("/delete_withdrawal/{id}", function ($id) {
 }, "GET");
 
 $Route->add("/users/withdraw", function () {
-    $Template = new Apps\Template(auth_url);
-    $Core = new Apps\Core;
+    $Template = new Template(auth_url);
+    $Core = new Core;
     $Data = $Core->data;
     $address = $Data->address;
     $amount = $Data->amount;
@@ -188,8 +241,8 @@ $Route->add("/users/withdraw", function () {
 
 
 $Route->add('/invest/{package}', function ($package) {
-    $Template = new Apps\Template(auth_url);
-    $Core = new Apps\Core;
+    $Template = new Template(auth_url);
+    $Core = new Core;
     $Data = $Core->data;
     $id = $Template->storage('accid');
     $amount = $Data->amount;
@@ -214,10 +267,29 @@ $Route->add('/invest/{package}', function ($package) {
                     $commision = $amount * 0.1;
                     $ref = $Core->GetUserInfo($user->ref_id);
                     $Core->AddTransaction($user->ref_id, $commision, "Commission", 'done');
-                    $commision = $commision + $ref->balance;
-                    $Core->UpdateBalance($user->ref_id, $commision);
+                    $commision1 = $commision + $ref->balance;
+                    $Core->UpdateBalance($user->ref_id, $commision1);
+
+                    $subject = "Commission earned";
+                    $message = "<h2>You earned \${$commision}</h2>
+                    <p> Your new Account Balance is {$commision1}</p>
+                    ";
+                    $Core->sendMail($ref->email, $ref->name, "Commision earned", $subject, $message);
                 }
-                // $Core->SendMail($ref->email, $ref->name, "You Earned Commission", "<p>Your downline {$user->name} just placed their first investment!!!</p></br> <p>You have been rewarded with {$commision} </p>");
+
+                $subject = "Investment created";
+                $message = "
+        <h2>Your investment has been created</h2>
+        <br/>
+        <p> The \${$amount} has been recieved from you </p>
+         <br />
+         <p> Your investment will mature in {$days} days</p>
+         <h4> We are Wipro, We keep our word</h4>
+
+        ";
+
+
+                $Core->sendMail($user->email, $user->name, "Investment created", $subject, $message);
             }
             $Core->UpdateBalance($id, $user_balance);
             $Template->setError("Investment Completed successfully", "success", "/dashboard");
@@ -229,4 +301,3 @@ $Route->add('/invest/{package}', function ($package) {
     $Template->setError("You do not have enough balance to complete the investments,\nPlease increase your balance!!! ", "warning", "/dashboard");
     $Template->redirect("/dashboard");
 }, "POST");
-

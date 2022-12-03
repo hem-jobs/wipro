@@ -3,6 +3,8 @@
 //Write your custome class/methods here
 namespace Apps;
 
+use \Apps\EmailTemplate;
+
 class Core extends Model
 {
 
@@ -52,6 +54,30 @@ class Core extends Model
 	public function GetUserInfo($id)
 	{
 		$sql = "SELECT * FROM `user` WHERE `id` = '$id'";
+		$user = mysqli_query($this->dbCon, $sql);
+		$User = mysqli_fetch_object($user);
+
+		return $User;
+	}
+	public function GetInvInfo($id)
+	{
+		$sql = "SELECT * FROM `investments` WHERE `id` = '$id'";
+		$user = mysqli_query($this->dbCon, $sql);
+		$User = mysqli_fetch_object($user);
+
+		return $User;
+	}
+	public function GetDepInfo($id)
+	{
+		$sql = "SELECT * FROM `deposits` WHERE `id` = '$id'";
+		$user = mysqli_query($this->dbCon, $sql);
+		$User = mysqli_fetch_object($user);
+
+		return $User;
+	}
+	public function GetWithInfo($id)
+	{
+		$sql = "SELECT * FROM `withdrawals` WHERE `id` = '$id'";
 		$user = mysqli_query($this->dbCon, $sql);
 		$User = mysqli_fetch_object($user);
 
@@ -164,30 +190,58 @@ class Core extends Model
 	}
 
 
-	
-	public function SendMail($email, $name, $subject, $mailbody)
+
+
+	/**
+	 * @param mixed $email
+	 * @param mixed $fullname
+	 * @param mixed $subject
+	 * @param mixed $body
+	 * @param string $type
+	 * @return void
+	 */
+	public function sendMail($email, $fullname, $subject,$caption, $body, $template = 'mails.template')
 	{
-		$mj = new \Mailjet\Client('2e3b98f80ab0a9cfeab5799c9f5ae7fb', 'dfa98525a944080610383d6895aa4bd7', true, ['version' => 'v3.1']);
-		$body = [
-			'Messages' => [
-				[
-					'From' => [
-						'Email' => "info@wiproinvestment.com",
-						'Name' => "Wipro Investment"
-					],
-					'To' => [
-						[
-							'Email' => "$email",
-							'Name' => "$name",
-						]
-					],
-					'Subject' => "$subject",
-					'HTMLPart' => "$mailbody",
-					'CustomID' => "Wipro Investment"
-				]
-			]
-		];
-		$response = $mj->post(\Mailjet\Resources::$Email, ['body' => $body]);
+		$Mailer = new Emailer();
+		$EmailTemplate = new EmailTemplate($template);
+		$EmailTemplate->subject = $subject;
+		$EmailTemplate->caption = $caption;
+		$EmailTemplate->fullname = $fullname;
+		$EmailTemplate->mailbody = $body;
+		$Mailer->SetTemplate($EmailTemplate);
+		$Mailer->toEmail = $email;
+		$Mailer->toName = "{$fullname}";
+		$Mailer->subject = "{$subject}";
+		$Mailer->fromEmail = "info@wiproinvestment.com";
+		$Mailer->fromName = "Wipro Support";
+		return $Mailer->send();
 	}
-	
+	// Email Sending Codes//
+
+
+	// public function SendMail($email, $name, $subject, $mailbody)
+	// {
+	// 	$mj = new \Mailjet\Client('2e3b98f80ab0a9cfeab5799c9f5ae7fb', 'dfa98525a944080610383d6895aa4bd7', true, ['version' => 'v3.1']);
+	// 	$body = [
+	// 		'Messages' => [
+	// 			[
+	// 				'From' => [
+	// 					'Email' => "info@wiproinvestment.com",
+	// 					'Name' => "Wipro Investment"
+	// 				],
+	// 				'To' => [
+	// 					[
+	// 						'Email' => "$email",
+	// 						'Name' => "$name",
+	// 					]
+	// 				],
+	// 				'Subject' => "$subject",
+	// 				'HTMLPart' => "$mailbody",
+	// 				'CustomID' => "Wipro Investment"
+	// 			]
+	// 		]
+	// 	];
+	// 	$response = $mj->post(\Mailjet\Resources::$Email, ['body' => $body]);
+	// }
+
 }

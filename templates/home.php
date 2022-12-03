@@ -718,16 +718,16 @@
                       <td data-label="Name">
                         <div class="user">
                           <?php if (isset($Core->GetUserInfo($transaction->user)->photo) && $Core->GetUserInfo($transaction->user)->name != '') : ?>
-                            <div class="thumb"><img src="_store/<?= $Core->GetUserInfo($transaction->user)->photo ?>" alt="image"></div>
+                            <div class="thumb"><img src="_store/<?= @$Core->GetUserInfo($transaction->user)->photo ?>" alt="image"></div>
                           <?php else : ?>
                             <div class="thumb"><img src="_store/user.jpg" alt="image"></div>
                           <?php endif; ?>
-                          <span><?= $Core->GetUserInfo($transaction->user)->name ?></span>
+                          <span><?= @$Core->GetUserInfo($transaction->user)->name ?></span>
                         </div>
                       </td>
-                      <td data-label="Date"><?= $transaction->created ?></td>
-                      <td data-label="Amount">$<?= $transaction->amount ?></td>
-                      <td data-label="Gateway"><?= $transaction->type ?></td>
+                      <td data-label="Date"><?= @$transaction->created ?></td>
+                      <td data-label="Amount">$<?= @$transaction->amount ?></td>
+                      <td data-label="Gateway"><?= @$transaction->type ?></td>
                     </tr>
                   <?php endwhile; ?>
                 </tbody>

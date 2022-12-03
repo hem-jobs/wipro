@@ -1,10 +1,11 @@
 <?php
 
-use Apps\MysqliDb;
+use Apps\Template;
+use Apps\Core;
 
 $Route->add('/login', function () {
 
-    $Template = new Apps\Template;
+    $Template = new Template;
     if ($Template->storage('accid')) {
         $Template->redirect("/dashboard");
     }
@@ -15,7 +16,7 @@ $Route->add('/login', function () {
 
 $Route->add('/register/{id}', function ($id) {
 
-    $Template = new Apps\Template;
+    $Template = new Template;
     $Template->assign("title", "Wipro Register");
     $Template->assign("ref_id", $id);
     $Template->render("pages.register");
@@ -24,7 +25,7 @@ $Route->add('/register/{id}', function ($id) {
 
 $Route->add('/register', function () {
 
-    $Template = new Apps\Template;
+    $Template = new Template;
     if ($Template->storage('accid')) {
         $Template->redirect("/dashboard");
     }
@@ -33,8 +34,8 @@ $Route->add('/register', function () {
 }, 'GET');
 
 $Route->add('/activate_user/{email}', function ($email) {
-    $Template = new Apps\Template;
-    $Core = new Apps\Core;
+    $Template = new Template;
+    $Core = new Core;
     $sql = "SELECT * FROM `user` WHERE `hash`='$email'";
 
     $selected = mysqli_query($Core->dbCon, $sql);
@@ -52,7 +53,7 @@ $Route->add('/activate_user/{email}', function ($email) {
                 <br />
                 <p> The Wipro Investments team</p>
                 ";
-                $Core->SendMail($selected->email, $selected->name, $subject, $message);
+                $Core->sendMail($selected->email, $selected->name, "Verified", $subject, $message);
                 $Template->authorize($selected->id);
                 $Template->store("accid", $selected->id);
                 $Template->setError('Email account verified', 'success', "/dashboard");
@@ -70,13 +71,13 @@ $Route->add('/activate_user/{email}', function ($email) {
 //Post
 
 $Route->add('/user/create-account', function () {
-    $Template = new Apps\Template;
-    $Core = new Apps\Core;
+    $Template = new Template;
+    $Core = new Core;
     $Data = $Core->data;
     $email = $Data->email;
     $name = $Data->name;
     $username = $Data->username;
-    if (isset($ref_id)) {
+    if (isset($Data->ref_id)) {
         $ref_id = $Core->ConvertIdUsername($Data->ref_id);
     } else {
         $ref_id = null;
@@ -96,10 +97,9 @@ $Route->add('/user/create-account', function () {
             $Template->authorize($created);
             $Login = $Core->GetUserInfo($created);
             $subject = "Welcome to Wipro Investments";
-
+            $caption = "Verification";
             $mailbody = "
             <div class=\"container-fluid background-secondary m-5\">
-            <img src=\"https://wiproinvestment.com/templates/assets/images/logo.webp\" alt=\"Logo\">
             <h1>Welcome to Wipro {$Login->name}</h1>
             </div>
             <div class=\"card\">
@@ -107,7 +107,7 @@ $Route->add('/user/create-account', function () {
             <h2>Your account creation was successful</h2>
             <h2 class=\"font-weight-bold\">Your username is: {$Login->username}</h2>
             <br />
-            <p>Click on the link below 👇 to verify your email address.</p>
+            <p>Click on the link below to verify your email address.</p>
             <br />
             <a href=\"http://www.wiproinvestment.com/activate_user/$hash\" style=\"color:gold;font-size: 16px;border:1px solid blue; text-decoration: none; margin: 16px;\">Activate</a>
             <br />
@@ -116,8 +116,25 @@ $Route->add('/user/create-account', function () {
             <p>Warm regards from the Technical Support Wipro Investments</p>
             <br/>
             ";
+            $Core->sendMail($Login->email, $Login->name, $subject, $caption, $mailbody);
 
-            $Core->SendMail($Login->email, $Login->name, $subject, $mailbody);
+
+            if ($ref_id) {
+                $referer = $Core->GetUserInfo($ref_id);
+                $caption = "Referral";
+                $subject = "You got a new referral";
+                $mailbody = "
+                <h2>A new user {$Login->name} signed up with your referral link</h2>
+                <br />
+                <p> You can reach out to them at <strong>{$Login->email}</strong></p>
+                <br />
+                <h5>Cheers to moving to financial freedom</h5>
+                <br />
+                <p>Encourage your referals to Invest and get a 10% referral income on their investment</p>
+                ";
+                $Core->sendMail($referer->email, $referer->name, $subject, $caption, $mailbody);
+            }
+
             $Template->setError('Account created successfully', 'success', "/dashboard");
             $Template->redirect("/dashboard");
         }
@@ -132,8 +149,8 @@ $Route->add('/user/create-account', function () {
 
 
 $Route->add('/user/login', function () {
-    $Template = new Apps\Template;
-    $Core = new Apps\Core;
+    $Template = new Template;
+    $Core = new Core;
     $Data = $Core->data;
     $email = $Data->email;
     $password = md5($Data->password . encrypt_salt);
@@ -153,8 +170,8 @@ $Route->add('/user/login', function () {
 
 
 $Route->add('/users/p2p/send', function () {
-    $Template = new Apps\Template(auth_url);
-    $Core = new Apps\Core;
+    $Template = new Template(auth_url);
+    $Core = new Core;
     $Data = $Core->data;
     $email = $Data->email;
     $amount = $Data->amount;
@@ -185,8 +202,8 @@ $Route->add('/users/p2p/send', function () {
 
 
 $Route->add("/messages/send", function () {
-    $Template = new Apps\Template;
-    $Core  = new Apps\Core;
+    $Template = new Template;
+    $Core  = new Core;
     $Data = $Core->data;
     $email = $Data->email;
     $name = $Data->name;
@@ -202,8 +219,35 @@ $Route->add("/messages/send", function () {
     $Template->redirect("/contact");
 }, "GET");
 
-$Route->add("/test/{email}/{name}", function($name, $email){
-    $Core = new Apps\Core;
-    $Core->SendMail2($email,$name);
-    $Core->debug("Sent");
+
+$Route->add("/users/list", function () {
+    $Template = new Template(auth_url);
+    $Core = new Core;
+    if ($Core->GetUserInfo($Template->storage("accid"))->role == 'admin') {
+        $Template->addheader("dashboard.layouts.header");
+        $Template->addfooter("dashboard.layouts.footer");
+        $Template->assign("title", "Users");
+        $Template->render("dashboard.users");
+    } else {
+
+        $Template->setError("Not authorized", "warning", "/dashboard");
+        $Template->redirect("/dashboard");
+    }
+}, "GET");
+
+
+$Route->add("/referals/view/{id}", function ($id) {
+    $Template = new Template(auth_url);
+    $Core = new Core;
+    if ($Core->GetUserInfo($Template->storage("accid"))->role == 'admin') {
+        $Template->addheader("dashboard.layouts.header");
+        $Template->addfooter("dashboard.layouts.footer");
+        $Template->assign("title", "Users");
+        $Template->assign("ref_id", $id);
+        $Template->render("dashboard.referals");
+    } else {
+
+        $Template->setError("Not authorized", "warning", "/dashboard");
+        $Template->redirect("/dashboard");
+    }
 }, "GET");

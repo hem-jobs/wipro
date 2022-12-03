@@ -12,46 +12,12 @@ include_once DOT . "/_public/dashboard.php";
 
 //Home page//
 $Route->add('/', function () {
-
-    $Template = new Apps\Template;
+    $Template = new Template;
     $Template->addheader("layouts.header");
     $Template->addfooter("layouts.footer");
     $Template->assign("title", "Wipro Home");
-
     $Template->render("home");
 }, 'GET');
-
-
-
-//Home page//
-$Route->add('/testmail', function () {
-
-    $name = "Agu Chux";
-    $body = "Welcome to";
-
-    $EmailTemplate = new Apps\EmailTemplate('mail.default');
-    $EmailTemplate->fullname = $name;
-    $EmailTemplate->body = $body;
-
-    $mailer = new Apps\Emailer();
-    $mailer->SetTemplate($EmailTemplate);
-    $mailer->toEmail = "obiefunamarcel@gmail.com";
-    $mailer->toName = "Agu Chux";
-    $mailer->fromEmail = "info@wiproinvestment.com";
-    $mailer->fromName = "Wipro";
-
-    $sent = $mailer->send();
-    die($sent);
-    
-}, 'GET');
-
-
-//Home page//
-
-
-
-// Dashboard routes //
-
 
 
 //Pages dynamic route//
@@ -59,7 +25,7 @@ $Route->add('/testmail', function () {
 
 $Route->add('/{page}', function ($page) {
 
-    $Template = new Apps\Template;
+    $Template = new Template;
     $Template->addheader("layouts.header");
     $Template->addfooter("layouts.footer");
     $Template->assign("title", "Wipro " . ucfirst($page));
@@ -68,13 +34,18 @@ $Route->add('/{page}', function ($page) {
 
 
 
+$Route->add("/test/mail", function () {
 
+    $Core = new Apps\Core;
+    $sent = $Core->sendMail("obiefunamarcel@gmail.com", "Marcel", "Test", "Test Mail", "Just a test");
+    $Core->debug($sent);
+}, "GET");
 
 //Logout Sessions//
 $Route->add(
     '/auth/logout',
     function () {
-        $Template = new Apps\Template;
+        $Template = new Template;
         $Template->expire();
         $Template->cleanAll(session_delete_timout);
         $Template->redirect("/");

@@ -17,7 +17,8 @@
       <div class="text-center ">
         <h5><?= $Self->Toast(); ?></h5>
         <h5>Your Referal Link</h5>
-        <p id="ref" style="display:inline;"><?php $username = $User->username; echo "https://www.wiproinvestment.com/register/{$username}" ?></p>
+        <p id="ref" style="display:inline;"><?php $username = $User->username;
+                                            echo "https://www.wiproinvestment.com/register/{$username}" ?></p>
         <button id="copy" class="btn btn-secondary">Copy</button>
 
         <script>
@@ -58,16 +59,16 @@
         </div>
         <div class="col-12 col-sm-6 col-md-3">
           <a href="./users/deposit">
-          <div class="info-box">
-            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-money-bill"></i></span>
+            <div class="info-box">
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-money-bill"></i></span>
 
-            <div class="info-box-content">
-              <span class="info-box-text">Fund Wallet</span>
+              <div class="info-box-content">
+                <span class="info-box-text">Fund Wallet</span>
 
+              </div>
+              <!-- /.info-box-content -->
             </div>
-            <!-- /.info-box-content -->
-          </div>
-        </a>
+          </a>
           <!-- /.info-box -->
         </div>
         <!-- /.col -->
@@ -146,6 +147,28 @@
           </div>
           <!-- /.info-box -->
         </div>
+
+        <?php if ($User->role == 'admin') : ?>
+          <div class="col-12 col-sm-6 col-md-3">
+            <a href="./users/list">
+              <div class="info-box mb-3">
+                <span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-users"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Total Users</span>
+                  <span class="info-box-number">
+                    <?php
+                    echo mysqli_query($Core->dbCon, "SELECT * FROM `user`")->num_rows;
+                    ?>
+
+                  </span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+            </a>
+            <!-- /.info-box -->
+          </div>
+        <?php endif; ?>
         <!-- /.col -->
       </div>
       <!-- /.row -->
