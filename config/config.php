@@ -43,9 +43,9 @@ define("usdt", "0xF99f80A98F065059F5B969DaffBebE7eF243D0cC");
 define("domain", "https://wiproinvestment.com/");
 
 define("db_host","localhost");
-define("db_user","wiproinv_db");
-define("db_password","wiproinv_db");
-define("db_name","wiproinv_db");
+define("db_user","wiprox_wiprox");
+define("db_password","5K^fb@3JOs\$b");
+define("db_name","wiprox_db");
 define("db_port",null);
 define("db_charset","utf8");
 define("db_socket",null);

@@ -212,7 +212,7 @@ class Core extends Model
 		$Mailer->toEmail = $email;
 		$Mailer->toName = "{$fullname}";
 		$Mailer->subject = "{$subject}";
-		$Mailer->fromEmail = "info@wiproinvestment.com";
+		$Mailer->fromEmail = "admin@wiproinvestment.com";
 		$Mailer->fromName = "Wipro Support";
 		return $Mailer->send();
 	}

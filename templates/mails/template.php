@@ -205,7 +205,7 @@
             color: #17bebb;
         }
 
-  
+
         /*LOGO*/
 
         .logo h1 {
@@ -318,7 +318,7 @@
                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
                             <tr>
                                 <td class="logo" style="text-align: center;">
-                                    <h1><a href="#"><?=$caption?></a></h1>
+                                    <h1><a href="#"><?= $caption ?></a></h1>
                                 </td>
                             </tr>
                         </table>
@@ -347,10 +347,10 @@
                 <!-- 1 Column Text + Button : END -->
             </table>
             <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">
-    
+
                 <tr>
                     <td class="bg_light" style="text-align: center;">
-                        <p>❤️ from the Wipro Investment Support Team <a href="https://wiproinvestment.com" style="color: rgba(0,0,0,.8);">Visit us here</a></p>
+                        <p style="font-size: larger; font-weight:bolder;">From the Wipro Investment Support Team <a href="https://wiproinvestment.com" style="color: rgba(0,0,0,.8);">Visit us here</a></p>
                     </td>
                 </tr>
             </table>

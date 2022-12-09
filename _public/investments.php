@@ -87,12 +87,12 @@ $Route->add("/finish_investment/{id}", function ($id) {
 
         $Investor = $Core->GetUserInfo($invest->user);
         $prev_balance = $Investor->balance;
-        $new_balance = $prev_balance + $investment_yield;
-        $save_balance = "UPDATE `user` SET `balance` = '$new_balance' WHERE `id` = '$id' = '$Investor->id'";
-        $saved = mysqli_query($Core->dbCon, $save_balance);
+        $new_balance = (int)$prev_balance + (int)$investment_yield + (int)$investment_amount;
+        $save_balance = "UPDATE `user` SET `balance` = '$new_balance' WHERE `id` = '$Investor->id'";
+         mysqli_query($Core->dbCon, $save_balance);
 
         $update_investment = "UPDATE `investments` SET `status` = 'done' WHERE `id` = '$id'";
-        $saved = mysqli_query($Core->dbCon, $update_investment);
+         mysqli_query($Core->dbCon, $update_investment);
         $Core->UpdateTransaction($invest->trans_id, 'done');
         $subject = "Investment cycle completed";
         $message = "Your investment has been completed, Your new balance is {$new_balance}";
