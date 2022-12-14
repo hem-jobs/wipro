@@ -38,8 +38,11 @@ class Core extends Model
 	{
 		$sql = "SELECT * FROM `user` WHERE `username`= '$username'";
 		$sql = mysqli_query($this->dbCon, $sql);
-		$user = mysqli_fetch_object($sql);
-		return $user->id;
+		if ($sql->num_rows) {
+			$user = mysqli_fetch_object($sql);
+			return $user->id;
+		}
+		return 1003;
 	}
 	public function UserLogin($email, $password)
 	{
@@ -200,7 +203,7 @@ class Core extends Model
 	 * @param string $type
 	 * @return void
 	 */
-	public function sendMail($email, $fullname, $subject,$caption, $body, $template = 'mails.template')
+	public function sendMail($email, $fullname, $subject, $caption, $body, $template = 'mails.template')
 	{
 		$Mailer = new Emailer();
 		$EmailTemplate = new EmailTemplate($template);

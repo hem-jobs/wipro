@@ -77,7 +77,7 @@ $Route->add('/user/create-account', function () {
     $email = $Data->email;
     $name = $Data->name;
     $username = $Data->username;
-    if (isset($Data->ref_id)) {
+    if ($Data->ref_id) {
         $ref_id = $Core->ConvertIdUsername($Data->ref_id);
     } else {
         $ref_id = null;
