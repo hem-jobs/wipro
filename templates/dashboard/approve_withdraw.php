@@ -23,6 +23,7 @@
                                 <th>Order ID</th>
                                 <th>Status</th>
                                 <th>Amount</th>
+                                <th>User</th>
                                 <th>Wallet</th>
                                 <th>Date</th>
                                 <th>Approval</th>
@@ -35,6 +36,7 @@
                                     <td><a href="javascript:void(0)">WIOR0<?= $trans->id ?></a></td>
                                     <td><span class="badge badge-warning">Pending</span></td>
                                     <td>$<?= $trans->amount ?></td>
+                                    <td>$<?= $Core->GetUserInfo($trans->user)->name ?></td>
                                     <td>$<?= $trans->address ?></td>
                                     <td>
                                         <div class="sparkbar" data-color="#00a65a" data-height="20"><?= $trans->created ?></div>
@@ -81,6 +83,7 @@
                                 <th>Order ID</th>
                                 <th>Status</th>
                                 <th>Amount</th>
+                                <th>User</th>
                                 <th>Date</th>
                             </tr>
                         </thead>
@@ -91,6 +94,7 @@
                                     <td><a href="javascript:void(0)">WIOR0<?= $trans->id ?></a></td>
                                     <td><span class="badge badge-success">Done</span></td>
                                     <td>$<?= $trans->amount ?></td>
+                                    <td>$<?= $Core->GetUserInfo($trans->user)->name ?></td>
                                     <td>
                                         <div class="sparkbar" data-color="#00a65a" data-height="20"><?= $trans->updated ?></div>
                                     </td>
