@@ -9,7 +9,7 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="amount">Amount to Deposit <i class="fas fa-dollar-sign"></i></label>
-                    <input type="number" name="amount" id="amount" required min="10" step="10">
+                    <input type="number" name="amount" id="amount" required min="10" step="1">
                 </div>
                 <div class="form-group">
                     <label for="method">Deposit Method</label>

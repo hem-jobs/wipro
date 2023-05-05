@@ -36,15 +36,15 @@ define("session_delete_timout",3000);
 define("auth_session_key","logged_in");
 define("auth_url","/login");
 
-define("btc", "bc1qxmx7hjju08vefdtej0hx9qe43guaqqnz276sxh");
-define("eth", "0xF99f80A98F065059F5B969DaffBebE7eF243D0cC");
-define("usdt", "0xF99f80A98F065059F5B969DaffBebE7eF243D0cC");
+define("btc", "bc1q84vww29l36qs8nwx64p0c4gap69um494r6l3ep");
+define("eth", "0x967E24590407022319B9C3ea48BCC37BB5c2D9DF");
+define("usdt", "0x967E24590407022319B9C3ea48BCC37BB5c2D9DF");
 
 define("domain", "https://wiproinvestment.com/");
 
 define("db_host","localhost");
 define("db_user","wiprox_wiprox");
-define("db_password","5K^fb@3JOs\$b");
+define("db_password","e47893!c3XD");
 define("db_name","wiprox_db");
 define("db_port",null);
 define("db_charset","utf8");
