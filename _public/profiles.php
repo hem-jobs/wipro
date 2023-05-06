@@ -50,7 +50,8 @@ $Route->add("/user/update_name", function () {
     $Data = $Core->data;
     $name = $Data->name;
     $email = $Data->email;
-    $sql = "UPDATE `user` SET `name` = '$name' WHERE `email` = '$email'";
+    $id = $Data->id;
+    $sql = "UPDATE `user` SET `name` = '$name', `email`='$email' WHERE `id` = '$id'";
     $updated = mysqli_query($Core->dbCon, $sql);
     if ($updated) {
         $Template->setError("Name Updated successfully", "success", "/dashboard/user/profile");

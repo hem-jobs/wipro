@@ -42,6 +42,25 @@ $Route->add("/dashboard/withdraw_approve", function () {
     $Template->redirect("/dashboard");
 }, "GET");
 
+$Route->add("/dashboard/deposit_change_amount", function () {
+    $Template = new Template(auth_url);
+    $Core = new Core;
+    $User = $Core->GetUserInfo($Template->storage("accid"));
+    if ($User->role == "admin") {
+        $Data = $Core->data;
+        $id = $Data->id;
+        $amount = $Data->amount;
+        $sql = "UPDATE `deposits` SET `amount`='$amount' WHERE `id` = '$id'";
+        $updated = mysqli_query($Core->dbCon, $sql);
+        if ($updated) {
+            $Template->setError("Amount updated successfully", 'success', '/dashboard/deposit_approve');
+            $Template->redirect('/dashboard/deposit_approve');
+        }
+        $Template->setError("Amount update failed", 'warning', '/dashboard/deposit_approve');
+        $Template->redirect('/dashboard/deposit_approve');
+    }
+}, "POST");
+
 $Route->add("/dashboard/deposit_approve", function () {
     $Template = new Template(auth_url);
     $Core = new Core;

@@ -33,22 +33,29 @@
                             <?php
                             while ($trans = mysqli_fetch_object($deposits)) : ?>
                                 <tr>
+
                                     <td><a href="javascript:void(0)">WIOR0<?= $trans->id ?></a></td>
                                     <td><span class="badge badge-warning">Pending</span></td>
-                                    <td>$<?= $trans->amount ?></td>
-                                    <td>$<?= $Core->GetUserInfo($trans->user_id)->name ?></td>
-                                    <td>$<?= $trans->hash ?></td>
+                                    <td>
+                                        <form method="post" action="./dashboard/deposit_change_amount">
+                                            <input type="number" name="amount" class="form-control input-md" value="<?= $trans->amount ?>">
+                                            <input type="hidden" name="id" value="<?= $trans->id ?>">
+                                            <button class="btn btn-sm btn-info">Edit</button>
+                                        </form>
+                                    </td>
+                                    <td><?= $Core->GetUserInfo($trans->user_id)->name ?></td>
+                                    <td class="text-wrap"><?= $trans->hash ?></td>
                                     <td>
                                         <div class="sparkbar" data-color="#00a65a" data-height="20"><?= $trans->created ?></div>
                                     </td>
                                     <td>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <a href="/approve_deposit/<?= $trans->id ?>" class="btn btn-outline-success ">Approve</a>
+                                        <div class="d-flex">
+                                            <div class="">
+                                                <a href="/approve_deposit/<?= $trans->id ?>" class="btn btn-outline-success btn-sm ">Approve</a>
 
                                             </div>
-                                            <div class="col-md-6">
-                                                <a href="/decline_deposit/<?= $trans->id ?>" class="btn btn-outline-danger ">Decline</a>
+                                            <div class="">
+                                                <a href="/decline_deposit/<?= $trans->id ?>" class="btn btn-outline-danger btn-sm">Decline</a>
 
                                             </div>
 
@@ -97,7 +104,7 @@
                                     <td><a href="javascript:void(0)">WIOR0<?= $trans->id ?></a></td>
                                     <td><span class="badge badge-success">Done</span></td>
                                     <td>$<?= $trans->amount ?></td>
-                                    <td>$<?= $Core->GetUserInfo($trans->user_id)->name ?></td>
+                                    <td><?= $Core->GetUserInfo($trans->user_id)->name ?></td>
                                     <td>
                                         <div class="sparkbar" data-color="#00a65a" data-height="20"><?= $trans->updated ?></div>
                                     </td>
