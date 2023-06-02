@@ -676,7 +676,7 @@
 
 
 <!-- data section start -->
-<section class="pt-120 pb-120">
+<!-- <section class="pt-120 pb-120">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-6 text-center">
@@ -685,7 +685,7 @@
           <p>Here is the log of the most recent transactions including withdraw and deposit made by our users.</p>
         </div>
       </div>
-    </div><!-- row end -->
+    </div>
     <div class="row justify-content-center">
       <div class="col-lg-10">
         <ul class="nav nav-tabs custom--style-two justify-content-center" id="transactionTab" role="tablist">
@@ -771,11 +771,11 @@
               </table>
             </div>
           </div>
-        </div><!-- tab-content end -->
+        </div>
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <!-- data section end -->
 
 
